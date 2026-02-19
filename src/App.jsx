@@ -344,7 +344,7 @@ Owner Name: ${contact.name}
 Find their real USP. Build the complete 12-month LEDE strategy. Write real scripts, real video titles, real ad hooks they can copy and use tomorrow.`;
 
     try {
-      const res = await fetch(const res = await fetch("/api/generate", {
+      const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json",
       },
