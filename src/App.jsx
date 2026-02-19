@@ -344,12 +344,10 @@ Owner Name: ${contact.name}
 Find their real USP. Build the complete 12-month LEDE strategy. Write real scripts, real video titles, real ad hooks they can copy and use tomorrow.`;
 
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch(const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json",
-    "x-api-key": import.meta.env.VITE_ANTHROPIC_API_KEY,
-    "anthropic-version": "2023-06-01"
-  },
+      },
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514",
           max_tokens: 1000,
