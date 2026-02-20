@@ -324,7 +324,36 @@ export default function LedeApp() {
   };
 
   const generateStrategy = async () => {
-    setScreen("generating");
+    try {
+      await fetch("https://snluesxlcnqkgsvaexzp.supabase.co/rest/v1/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": import.meta.env.VITE_SUPABASE_ANON_KEY,
+          "Authorization": `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify({
+          name: contact.name,
+          email: contact.email,
+          whatsapp: contact.whatsapp,
+          business_name: answers.business_name,
+          business_type: answers.business_type,
+          location: answers.location,
+          flagship: answers.flagship,
+          customer_pain: answers.customer_pain,
+          target_customer: answers.target_customer,
+          usp_story: answers.usp_story,
+          usp_method: answers.usp_method,
+          usp_proof: answers.usp_proof,
+          competitors: answers.competitors,
+          budget: answers.budget,
+          platforms: answers.platforms,
+        }),
+      });
+    } catch (err) {
+      console.log("Lead save failed silently", err);
+    }setScreen("generating");
     setLoading(true);
 
     const msg = `Business Name: ${answers.business_name}
