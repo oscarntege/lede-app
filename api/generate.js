@@ -34,7 +34,7 @@ module.exports = async function handler(req, res) {
           "Authorization": `Bearer ${resendKey}`,
         },
         body: JSON.stringify({
-          from: "LEDE <onboarding@resend.dev>",
+          from: "LEDE <oscar@ledehq.com>",
           to: contact.email,
           subject: `Your LEDE Strategy for ${businessName} is ready`,
           html: `<div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:2rem;">
