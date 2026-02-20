@@ -8,6 +8,7 @@ module.exports = async function handler(req, res) {
 
   const anthropicKey = process.env.ANTHROPIC_API_KEY;
   const resendKey = process.env.RESEND_API_KEY;
+  const audienceId = process.env.RESEND_AUDIENCE_ID;
 
   if (!anthropicKey) return res.status(500).json({ error: "API key missing" });
 
@@ -27,6 +28,22 @@ module.exports = async function handler(req, res) {
     const data = await response.json();
 
     if (resendKey && contact?.email) {
+
+      if (audienceId) {
+        await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${resendKey}`,
+          },
+          body: JSON.stringify({
+            email: contact.email,
+            first_name: contact.name,
+            unsubscribed: false,
+          }),
+        }).catch(() => {});
+      }
+
       await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
@@ -34,7 +51,7 @@ module.exports = async function handler(req, res) {
           "Authorization": `Bearer ${resendKey}`,
         },
         body: JSON.stringify({
-          from: "LEDE <oscar@ledehq.com>",
+          from: "LEDE <onboarding@resend.dev>",
           to: contact.email,
           subject: `Your LEDE Strategy for ${businessName} is ready`,
           html: `<div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:2rem;">
@@ -46,7 +63,7 @@ module.exports = async function handler(req, res) {
             <p style="margin-top:2rem;">To your story,<br/><strong>Oscar Ntege</strong><br/>The Story Alchemist<br/>Brand 4:44</p>
           </div>`,
         }),
-      });
+      }).catch(() => {});
 
       await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -55,7 +72,7 @@ module.exports = async function handler(req, res) {
           "Authorization": `Bearer ${resendKey}`,
         },
         body: JSON.stringify({
-          from: "LEDE Leads <oscar@ledehq.com>",
+          from: "LEDE Leads <onboarding@resend.dev>",
           to: "dimesmaker@gmail.com",
           subject: `New LEDE Lead: ${businessName}`,
           html: `<div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:2rem;">
@@ -67,7 +84,7 @@ module.exports = async function handler(req, res) {
             <p>Log into <a href="https://supabase.com/dashboard/project/snluesxlcnqkgsvaexzp">Supabase</a> to see their full answers.</p>
           </div>`,
         }),
-      });
+      }).catch(() => {});
     }
 
     return res.status(200).json(data);
@@ -75,25 +92,3 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: error.message });
   }
 };
-```
-
-Now we also need to update App.jsx to send the contact details to the API. Go to github.com/oscarntege/lede-app/blob/main/src/App.jsx
-
-Click pencil. Press Ctrl+F. Search for this.
-```
-body: JSON.stringify({
-      model: "claude-sonnet-4-20250514",
-```
-
-Replace the entire body section with this.
-```
-body: JSON.stringify({
-        payload: {
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
-          system: SYSTEM_PROMPT,
-          messages: [{ role: "user", content: msg }],
-        },
-        contact: contact,
-        businessName: answers.business_name,
-      }),
