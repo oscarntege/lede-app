@@ -8,11 +8,10 @@ module.exports = async function handler(req, res) {
 
   const anthropicKey = process.env.ANTHROPIC_API_KEY;
   const resendKey = process.env.RESEND_API_KEY;
-  const audienceId = process.env.RESEND_AUDIENCE_ID;
 
   if (!anthropicKey) return res.status(500).json({ error: "API key missing" });
 
-  const { payload, contact, businessName } = req.body;
+  const { payload, contact, businessName, type } = req.body;
 
   try {
     const response = await fetch("https://api.anthropic.com/v1/messages", {
@@ -27,23 +26,7 @@ module.exports = async function handler(req, res) {
 
     const data = await response.json();
 
-    if (resendKey && contact?.email) {
-
-      if (audienceId) {
-        await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${resendKey}`,
-          },
-          body: JSON.stringify({
-            email: contact.email,
-            first_name: contact.name,
-            unsubscribed: false,
-          }),
-        }).catch(() => {});
-      }
-
+    if (type === "strategy" && resendKey && contact?.email) {
       await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
@@ -92,3 +75,15 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: error.message });
   }
 };
+```
+
+Commit that. Then go to github.com/oscarntege/lede-app/blob/main/src/App.jsx
+
+Click pencil. Press **Ctrl + F.** Search for this exact line.
+```
+if (screen === "full_strategy") return wrap(
+```
+
+Find the Download My Strategy button section. It looks like this.
+```
+<button onClick={handleDownload}
