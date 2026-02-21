@@ -378,8 +378,8 @@ Find their real USP. Build the complete 12-month LEDE strategy. Write real scrip
         headers: { "Content-Type": "application/json",
       },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
+          model: "claude-sonnet-4-6",
+          max_tokens: 10000,
           system: SYSTEM_PROMPT,
           messages: [{ role: "user", content: msg }],
         }),
