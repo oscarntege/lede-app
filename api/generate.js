@@ -10,17 +10,7 @@ module.exports = async function handler(req, res) {
     const anthropicKey = process.env.ANTHROPIC_API_KEY;
     if (!anthropicKey) return res.status(500).json({ error: "API key missing" });
 
-    const rawBody = await new Promise((resolve, reject) => {
-      let data = "";
-      req.on("data", chunk => { data += chunk; });
-      req.on("end", () => resolve(data));
-      req.on("error", reject);
-    });
-
-    const body = JSON.parse(rawBody);
-    const payload = body.payload || body;
-
-    console.log("Calling Anthropic with model:", payload.model);
+    const payload = req.body.payload || req.body;
 
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -33,11 +23,9 @@ module.exports = async function handler(req, res) {
     });
 
     const data = await response.json();
-    console.log("Anthropic response type:", data.type);
-    return res.status(200).json(data);
+    return res.status(response.status).json(data);
 
   } catch (error) {
-    console.log("Error:", error.message);
     return res.status(500).json({ error: error.message });
   }
 };
