@@ -547,6 +547,27 @@ export default function App(){
   const [step,         setStep]         =useState(0);
   const [answers,      setAnswers]      =useState({});
   const [contact,      setContact]      =useState({name:"",email:"",whatsapp:""});
+
+  // ── Browser back/forward navigation ──
+  const navigate = useCallback((newScreen, opts={}) => {
+    const state = { screen: newScreen, step: opts.step ?? 0 };
+    window.history.pushState(state, "", `#${newScreen}`);
+    setScreen(newScreen);
+    if (opts.step !== undefined) setStep(opts.step);
+  }, []);
+
+  useEffect(() => {
+    const onPop = (e) => {
+      if (e.state?.screen) {
+        setScreen(e.state.screen);
+        if (e.state.step !== undefined) setStep(e.state.step);
+      } else {
+        setScreen("welcome");
+      }
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
   const [streak,       setStreak]       =useState({count:0,lastPosted:null,best:0,total:0});
   const [weekContent,  setWeekContent]  =useState(null);
   const [activeDay,    setActiveDay]    =useState(0);
@@ -593,8 +614,12 @@ export default function App(){
       if(saved?.weekStart===weekStart()){setWeekContent(saved.days);setActiveDay(todayDayIdx(saved.days));}
       else genWeek(profile.answers,profile.contact.name);
       setScreen("dashboard");
+      window.history.replaceState({screen:"dashboard"}, "", "#dashboard");
       requestNotifications().then(ok=>{if(ok)scheduleNotifications();});
-    }else{setScreen("welcome");}
+    }else{
+      setScreen("welcome");
+      window.history.replaceState({screen:"welcome"}, "", "#welcome");
+    }
   },[]);
 
   const todayDayIdx=days=>{const names=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];const t=names[new Date().getDay()];const i=(days||[]).findIndex(d=>d.day===t);return i>=0?i:0;};
@@ -632,18 +657,18 @@ export default function App(){
       const data=await res.json();if(!res.ok)throw new Error(data.error);
       save("lede_strategy",data);save("lede_profile",{answers,contact});
       fetch("/api/track",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:contact.name,email:contact.email,whatsapp:contact.whatsapp,business:answers.what||"",date:new Date().toISOString()})}).catch(()=>{});
-      setScreen("dashboard");genWeek(answers,contact.name);
+      navigate("dashboard");genWeek(answers,contact.name);
       const ok=await requestNotifications();if(ok)scheduleNotifications();
     }catch(e){setError(e.message);}finally{setLoading(false);}
   };
 
   const restartQuestionnaire=()=>{
-    setStep(0);setAnswers({});setError("");setScreen("questions");
+    setStep(0);setAnswers({});setError("");navigate("questions");
   };
   const startNewCampaign=()=>{
     if(!window.confirm("Start a new campaign? Your current answers will be replaced."))return;
     localStorage.removeItem("lede_profile");localStorage.removeItem("lede_week");localStorage.removeItem("lede_strategy");
-    setWeekContent(null);setAnswers({});setContact({name:"",email:"",whatsapp:""});setStep(0);setScreen("welcome");
+    setWeekContent(null);setAnswers({});setContact({name:"",email:"",whatsapp:""});setStep(0);navigate("welcome");
   };
 
   const sh={
@@ -705,7 +730,7 @@ export default function App(){
           <div style={{display:"flex",gap:6,marginBottom:18,marginTop:4,flexWrap:"wrap"}}>
             {["USP Analysis","Weekly Plan","All Platforms","Teleprompter","Daily Reminders"].map(f=><div key={f} style={{fontSize:"9px",color:G,background:"rgba(0,255,133,0.06)",border:`1px solid rgba(0,255,133,0.12)`,borderRadius:2,padding:"4px 8px",fontFamily:SANS,fontWeight:600,letterSpacing:"0.5px",whiteSpace:"nowrap"}}>{f}</div>)}
           </div>
-          <button className="lede-btn gb" style={sh.btn} onClick={()=>setScreen("questions")}>FIND MY USP — FREE →</button>
+          <button className="lede-btn gb" style={sh.btn} onClick={()=>{window.history.pushState({screen:"questions",step:0},"","#q1");setScreen("questions");setStep(0);}}>FIND MY USP — FREE →</button>
           <p style={{color:"#1e1e28",fontSize:"11px",marginTop:12,textAlign:"center",fontFamily:SANS,fontStyle:"italic"}}>Stone Ridge School: 300 → 1,300 students · Primtouch: $0 → $10K/month</p>
         </div>
       </div>
@@ -728,10 +753,10 @@ export default function App(){
             {q.type==="choice"&&<ChoiceQ options={q.options} value={answers[q.id]||null} onChange={v=>setAnswers(p=>({...p,[q.id]:v}))} multi={false}/>}
             {q.type==="multi"&&<ChoiceQ options={q.options} value={answers[q.id]?answers[q.id].split(", "):[]} onChange={v=>setAnswers(p=>({...p,[q.id]:v}))} multi={true}/>}
             <button className={ok?"lede-btn":""} style={ok?sh.btn:sh.btnX} disabled={!ok}
-              onClick={()=>{if(!ok)return;if(step<QUESTIONS.length-1)setStep(s=>s+1);else setScreen("contact");}}>
+              onClick={()=>{if(!ok)return;if(step<QUESTIONS.length-1){const ns=step+1;window.history.pushState({screen:"questions",step:ns},"",`#q${ns+1}`);setStep(ns);}else navigate("contact");}}>
               {step===QUESTIONS.length-1?"ALMOST DONE →":"NEXT →"}
             </button>
-            <button style={sh.bk} onClick={()=>{if(step>0)setStep(s=>s-1);else setScreen("welcome");}}>← Back</button>
+            <button style={sh.bk} onClick={()=>window.history.back()}>← Back</button>
           </div>
         </div>
       </div>
@@ -759,7 +784,7 @@ export default function App(){
                 {!waFilled&&<p style={{color:MT,fontSize:"11px",marginBottom:10,fontFamily:SANS}}>WhatsApp is required — your daily prompts arrive here.</p>}
                 {error&&<div style={sh.err}>{error}</div>}
                 <button className={ok?"lede-btn gb":""} style={ok?sh.btn:sh.btnX} disabled={!ok} onClick={handleOnboard}>BUILD MY CONTENT ENGINE →</button>
-                <button style={sh.bk} onClick={()=>setScreen("questions")}>← Back to questions</button>
+                <button style={sh.bk} onClick={()=>navigate("questions")}>← Back to questions</button>
               </>
             )}
           </div>
