@@ -153,8 +153,8 @@ const QUESTIONS = [
     options:["Not enough clients or leads","People say I am too expensive","I do not know what content to post","I get attention but no sales","I have no time to create content","People do not understand what I offer"]},
   {id:"tried",label:"QUESTION 7 OF 12",q:"What marketing have you tried before?",type:"multi",
     options:["Boosted Facebook posts","Flyers and print advertising","WhatsApp status updates","Instagram posts","Word of mouth only","Google ads","TikTok videos","YouTube","Nothing yet"]},
-  {id:"price",label:"QUESTION 8 OF 12",q:"What is your price range?",type:"choice",
-    options:["Under 100,000 UGX / $25","100K – 500K UGX / $25–$130","500K – 2M UGX / $130–$530","2M – 5M UGX / $530–$1,300","Above 5M UGX / $1,300+","I charge per project"]},
+  {id:"price",label:"QUESTION 8 OF 12",q:"How much does your product or service cost?",type:"choice",
+    options:["Under $30 per sale","$30 – $150 per sale","$150 – $500 per sale","$500 – $2,000 per sale","Above $2,000 per sale","It varies — I price per project"]},
   {id:"objection",label:"QUESTION 9 OF 12",q:"What do people say when they do not buy?",type:"choice",
     options:["It is too expensive","Let me think about it","I will come back later","I found someone cheaper","I do not need it right now","They disappear without explaining"]},
   {id:"proof",label:"QUESTION 10 OF 12",q:"What proof do you have that your business works?",type:"text",
@@ -167,12 +167,12 @@ const QUESTIONS = [
 
 const GLOBAL_CSS = `
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-  body{margin:0;background:#0d0d0f;}
-  textarea::placeholder,input::placeholder{color:#2e2e3e!important;opacity:1;}
-  .lede-btn:hover{filter:brightness(1.1);transform:translateY(-1px);}
+  body{margin:0;background:#f0f2f5;}
+  textarea::placeholder,input::placeholder{color:#bbbbbe!important;opacity:1;}
+  .lede-btn:hover{filter:brightness(0.96);transform:translateY(-1px);}
   .choice-opt{transition:all 0.15s ease;cursor:pointer;user-select:none;}
-  .choice-opt:hover{border-color:#333!important;background:#161620!important;}
-  .choice-opt.on{border-color:#00FF85!important;background:rgba(0,255,133,0.07)!important;}
+  .choice-opt:hover{border-color:#ccc!important;background:#f7f7f7!important;}
+  .choice-opt.on{border-color:#00CC6A!important;background:rgba(0,200,100,0.06)!important;}
   @keyframes slideUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
   @keyframes glow{0%,100%{box-shadow:0 0 8px rgba(0,255,133,0.2);}50%{box-shadow:0 0 28px rgba(0,255,133,0.5);}}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.6;transform:scale(0.9);}}
@@ -194,9 +194,23 @@ const GLOBAL_CSS = `
 
 const LOAD_MSGS=["Digging through your story…","Sniffing out your USP…","Unearthing your hook engine…","Applying Hooksmith frameworks…","Crafting your origin story…","Building your content week…","Almost there…"];
 
-function DogLoader({message}){
+function DogLoader({message,showProgress=false}){
   const [idx,setIdx]=useState(0);
+  const [progress,setProgress]=useState(0);
   useEffect(()=>{const id=setInterval(()=>setIdx(i=>(i+1)%LOAD_MSGS.length),2800);return()=>clearInterval(id);},[]);
+  useEffect(()=>{
+    if(!showProgress)return;
+    // Simulate progress: fast to 60%, then slow to 90%, final jump on done
+    let p=0;
+    const tick=setInterval(()=>{
+      setProgress(prev=>{
+        if(prev<60)return prev+2.5;
+        if(prev<88)return prev+0.4;
+        return prev;
+      });
+    },180);
+    return()=>clearInterval(tick);
+  },[showProgress]);
   return(
     <div style={{display:"flex",flexDirection:"column",alignItems:"center",padding:"52px 24px 44px"}}>
       <div style={{position:"relative",width:160,height:120,marginBottom:28}}>
@@ -207,7 +221,19 @@ function DogLoader({message}){
         <div style={{position:"absolute",left:52,top:96,width:56,height:14,borderRadius:"50%",background:"radial-gradient(ellipse,#1a0e06 0%,#0a0a0a 100%)"}}/>
       </div>
       <div key={idx} className="lm" style={{color:MT2,fontSize:"14px",fontFamily:SANS,fontStyle:"italic",textAlign:"center",minHeight:28}}>{message||LOAD_MSGS[idx]}</div>
-      <div style={{display:"flex",gap:6,marginTop:18}}>{[0,1,2].map(i=><div key={i} style={{width:4,height:4,borderRadius:"50%",background:G,opacity:0.5,animation:`dig 0.8s ease-in-out ${i*0.25}s infinite`}}/>)}</div>
+      {showProgress&&(
+        <div style={{width:"100%",maxWidth:280,marginTop:24}}>
+          <div style={{display:"flex",justifyContent:"space-between",marginBottom:6}}>
+            <span style={{fontSize:"10px",color:MT2,fontFamily:SANS,letterSpacing:"1px"}}>BUILDING YOUR USP</span>
+            <span style={{fontSize:"10px",color:G,fontFamily:SANS,fontWeight:700}}>{Math.round(progress)}%</span>
+          </div>
+          <div style={{background:BR,borderRadius:4,height:6,overflow:"hidden"}}>
+            <div style={{height:"100%",borderRadius:4,background:`linear-gradient(90deg,${G},#00ccff)`,width:`${progress}%`,transition:"width 0.3s ease",boxShadow:`0 0 8px ${G}55`}}/>
+          </div>
+          <div style={{fontSize:"9px",color:MT,fontFamily:SANS,marginTop:8,textAlign:"center"}}>This takes about 30 seconds</div>
+        </div>
+      )}
+      {!showProgress&&<div style={{display:"flex",gap:6,marginTop:18}}>{[0,1,2].map(i=><div key={i} style={{width:4,height:4,borderRadius:"50%",background:G,opacity:0.5,animation:`dig 0.8s ease-in-out ${i*0.25}s infinite`}}/>)}</div>}
     </div>
   );
 }
@@ -261,25 +287,25 @@ function EditField({value,onChange,multiline=false,label}){
   const save=()=>{ onChange(draft); setEditing(false); };
   if(editing) return(
     <div style={{marginBottom:18}}>
-      {label&&<div style={{fontSize:"8px",color:MT2,letterSpacing:"2px",marginBottom:6,fontFamily:SANS}}>{label}</div>}
+      {label&&<div style={{fontSize:"10px",color:"#65676b",letterSpacing:"1px",marginBottom:8,fontFamily:SANS,fontWeight:600}}>{label}</div>}
       {multiline
         ?<textarea value={draft} onChange={e=>setDraft(e.target.value)} autoFocus
-            style={{width:"100%",background:"#0a0a14",border:`1px solid ${G}`,borderRadius:3,padding:"12px",color:TXT,fontSize:"14px",lineHeight:1.75,fontFamily:SANS,outline:"none",resize:"vertical",minHeight:120}}/>
+            style={{width:"100%",background:"#fff",border:"2px solid #00AA55",borderRadius:6,padding:"12px",color:"#1c1e21",fontSize:"15px",lineHeight:1.75,fontFamily:SANS,outline:"none",resize:"vertical",minHeight:120,boxShadow:"0 0 0 3px rgba(0,170,85,0.1)"}}/>
         :<input value={draft} onChange={e=>setDraft(e.target.value)} autoFocus
-            style={{width:"100%",background:"#0a0a14",border:`1px solid ${G}`,borderRadius:3,padding:"10px 12px",color:TXT,fontSize:"14px",fontFamily:SANS,outline:"none"}}/>
+            style={{width:"100%",background:"#fff",border:"2px solid #00AA55",borderRadius:6,padding:"11px 14px",color:"#1c1e21",fontSize:"15px",fontFamily:SANS,outline:"none",boxShadow:"0 0 0 3px rgba(0,170,85,0.1)"}}/>
       }
-      <div style={{display:"flex",gap:8,marginTop:8}}>
-        <button onClick={save} style={{background:G,color:"#000",border:"none",borderRadius:3,padding:"8px 18px",fontSize:"10px",fontWeight:800,letterSpacing:"1.5px",cursor:"pointer",fontFamily:SANS}}>SAVE</button>
-        <button onClick={()=>{setDraft(value);setEditing(false);}} style={{background:"none",border:`1px solid ${BR2}`,color:MT2,borderRadius:3,padding:"8px 14px",fontSize:"10px",letterSpacing:"1px",cursor:"pointer",fontFamily:SANS}}>CANCEL</button>
+      <div style={{display:"flex",gap:8,marginTop:10}}>
+        <button onClick={save} style={{background:"#00AA55",color:"#fff",border:"none",borderRadius:6,padding:"9px 20px",fontSize:"13px",fontWeight:700,cursor:"pointer",fontFamily:SANS}}>Save</button>
+        <button onClick={()=>{setDraft(value);setEditing(false);}} style={{background:"none",border:"1px solid #ccd0d5",color:"#65676b",borderRadius:6,padding:"9px 16px",fontSize:"13px",cursor:"pointer",fontFamily:SANS}}>Cancel</button>
       </div>
     </div>
   );
   return(
-    <div style={{marginBottom:18,position:"relative"}}>
-      {label&&<div style={{fontSize:"8px",color:MT2,letterSpacing:"2px",marginBottom:6,fontFamily:SANS}}>{label}</div>}
-      <div style={{color:TXT,fontSize:"15px",fontFamily:SANS,lineHeight:1.7,paddingRight:32}}>{value}</div>
+    <div style={{marginBottom:16,position:"relative",paddingRight:36}}>
+      {label&&<div style={{fontSize:"10px",color:"#65676b",letterSpacing:"1px",marginBottom:6,fontFamily:SANS,fontWeight:600}}>{label}</div>}
+      <div style={{color:"#1c1e21",fontSize:"15px",fontFamily:SANS,lineHeight:1.7}}>{value}</div>
       <button onClick={()=>{setDraft(value);setEditing(true);}}
-        style={{position:"absolute",top:0,right:0,background:"none",border:`1px solid ${BR2}`,color:MT2,borderRadius:3,padding:"3px 8px",fontSize:"11px",cursor:"pointer",fontFamily:SANS}}>✏️</button>
+        style={{position:"absolute",top:0,right:0,background:"#f0f2f5",border:"none",color:"#65676b",borderRadius:6,padding:"5px 9px",fontSize:"13px",cursor:"pointer",fontFamily:SANS}}>✏️</button>
     </div>
   );
 }
@@ -469,36 +495,45 @@ function PlatformContent({dayItem,onUpdate}){
 
   const copy=()=>{
     navigator.clipboard?.writeText(getPlatformCaption()).catch(()=>{});
-    const btn=document.getElementById("copy-btn");if(btn){btn.textContent="✓ COPIED";setTimeout(()=>{btn.textContent="COPY";},2000);}
+    const btn=document.getElementById("copy-btn");if(btn){btn.textContent="✓ Copied!";btn.style.background="#e6f4ec";btn.style.color="#00AA55";setTimeout(()=>{btn.textContent="Copy";btn.style.background="#f0f2f5";btn.style.color="#1c1e21";},2000);}
   };
 
   return(
     <div>
-      {/* Platform tabs */}
-      <div style={{display:"flex",gap:4,overflowX:"auto",marginBottom:14,paddingBottom:2}}>
+      {/* Platform selector — pill tabs like Facebook reactions row */}
+      <div style={{display:"flex",gap:6,overflowX:"auto",marginBottom:12,paddingBottom:4}}>
         {PLATFORMS.map(pl=>(
-          <button key={pl.id} onClick={()=>setActivePlatform(pl.id)} style={{background:activePlatform===pl.id?`rgba(0,255,133,0.1)`:"transparent",border:`1px solid ${activePlatform===pl.id?G:BR2}`,color:activePlatform===pl.id?G:MT2,borderRadius:3,padding:"7px 11px",fontSize:"10px",fontWeight:600,letterSpacing:"0.5px",cursor:"pointer",whiteSpace:"nowrap",fontFamily:SANS,flexShrink:0}}>
+          <button key={pl.id} onClick={()=>setActivePlatform(pl.id)} style={{
+            background:activePlatform===pl.id?"#00AA55":"#f0f2f5",
+            color:activePlatform===pl.id?"#fff":"#65676b",
+            border:"none",borderRadius:20,padding:"7px 14px",fontSize:"13px",fontWeight:600,
+            cursor:"pointer",whiteSpace:"nowrap",fontFamily:SANS,flexShrink:0,
+            boxShadow:activePlatform===pl.id?"0 2px 8px rgba(0,170,85,0.25)":"none",
+            transition:"all 0.15s",
+          }}>
             {pl.emoji} {pl.label}
           </button>
         ))}
       </div>
-      <div style={{fontSize:"9px",color:MT2,fontFamily:SANS,marginBottom:10,fontStyle:"italic"}}>{p?.hint}</div>
-      {/* Caption for this platform */}
+      {/* Platform tip */}
+      <div style={{fontSize:"12px",color:"#65676b",fontFamily:SANS,marginBottom:12,lineHeight:1.5}}>{p?.hint}</div>
+      {/* Caption body */}
       {editingCaption?(
         <div>
           <textarea value={captionDraft} onChange={e=>setCaptionDraft(e.target.value)} autoFocus
-            style={{width:"100%",background:"#0a0a14",border:`1px solid ${G}`,borderRadius:3,padding:"12px",color:TXT,fontSize:"13px",lineHeight:1.8,fontFamily:SANS,outline:"none",resize:"vertical",minHeight:110}}/>
-          <div style={{display:"flex",gap:8,marginTop:8}}>
-            <button onClick={()=>{onUpdate({...dayItem,caption:captionDraft});setEditingCaption(false);}} style={{background:G,color:"#000",border:"none",borderRadius:3,padding:"8px 18px",fontSize:"10px",fontWeight:800,letterSpacing:"1.5px",cursor:"pointer",fontFamily:SANS}}>SAVE</button>
-            <button onClick={()=>setEditingCaption(false)} style={{background:"none",border:`1px solid ${BR2}`,color:MT2,borderRadius:3,padding:"8px 14px",fontSize:"10px",cursor:"pointer",fontFamily:SANS}}>CANCEL</button>
+            style={{width:"100%",background:"#fff",border:"2px solid #00AA55",borderRadius:8,padding:"14px",color:"#1c1e21",fontSize:"15px",lineHeight:1.8,fontFamily:SANS,outline:"none",resize:"vertical",minHeight:120,boxShadow:"0 0 0 3px rgba(0,170,85,0.1)"}}/>
+          <div style={{display:"flex",gap:8,marginTop:10}}>
+            <button onClick={()=>{onUpdate({...dayItem,caption:captionDraft});setEditingCaption(false);}} style={{background:"#00AA55",color:"#fff",border:"none",borderRadius:6,padding:"9px 20px",fontSize:"14px",fontWeight:700,cursor:"pointer",fontFamily:SANS}}>Save</button>
+            <button onClick={()=>setEditingCaption(false)} style={{background:"none",border:"1px solid #ccd0d5",color:"#65676b",borderRadius:6,padding:"9px 16px",fontSize:"14px",cursor:"pointer",fontFamily:SANS}}>Cancel</button>
           </div>
         </div>
       ):(
-        <div style={{position:"relative"}}>
-          <div style={{background:"#0a0a14",border:`1px solid ${BR}`,borderRadius:3,padding:"12px",color:MT2,fontSize:"13px",lineHeight:1.8,fontFamily:SANS,whiteSpace:"pre-wrap",minHeight:80}}>{getPlatformCaption()}</div>
-          <div style={{display:"flex",gap:7,marginTop:8}}>
-            <button id="copy-btn" onClick={copy} style={{background:G,color:"#000",border:"none",borderRadius:3,padding:"8px 16px",fontSize:"10px",fontWeight:800,letterSpacing:"1.5px",cursor:"pointer",fontFamily:SANS}}>COPY</button>
-            <button onClick={()=>{setCaptionDraft(captionDraft||dayItem.caption||"");setEditingCaption(true);}} style={{background:"none",border:`1px solid ${BR2}`,color:MT2,borderRadius:3,padding:"8px 12px",fontSize:"10px",cursor:"pointer",fontFamily:SANS}}>✏️ EDIT</button>
+        <div>
+          {/* Caption text — dark on white, generous line height */}
+          <div style={{background:"#f7f8fa",border:"1px solid #e4e6ea",borderRadius:8,padding:"14px 16px",color:"#1c1e21",fontSize:"15px",lineHeight:1.75,fontFamily:SANS,whiteSpace:"pre-wrap",minHeight:80}}>{getPlatformCaption()}</div>
+          <div style={{display:"flex",gap:8,marginTop:10}}>
+            <button id="copy-btn" onClick={copy} style={{background:"#f0f2f5",color:"#1c1e21",border:"none",borderRadius:6,padding:"9px 18px",fontSize:"13px",fontWeight:600,cursor:"pointer",fontFamily:SANS}}>Copy</button>
+            <button onClick={()=>{setCaptionDraft(captionDraft||dayItem.caption||"");setEditingCaption(true);}} style={{background:"#f0f2f5",color:"#1c1e21",border:"none",borderRadius:6,padding:"9px 16px",fontSize:"13px",fontWeight:600,cursor:"pointer",fontFamily:SANS}}>✏️ Edit</button>
           </div>
         </div>
       )}
@@ -627,8 +662,8 @@ export default function App(){
     inp:   {width:"100%",background:"#fff",border:"1px solid #e0e0e0",borderRadius:3,padding:"12px 13px",color:"#111",fontSize:"14px",fontFamily:SANS,outline:"none",marginBottom:"10px"},
     btn:   {width:"100%",background:G,color:"#000",border:"none",borderRadius:3,padding:"15px",fontSize:"11px",fontWeight:800,letterSpacing:"2.5px",cursor:"pointer",marginTop:"18px",fontFamily:SANS,transition:"all 0.2s"},
     btnX:  {width:"100%",background:BR,color:MT,border:"none",borderRadius:3,padding:"15px",fontSize:"11px",fontWeight:800,letterSpacing:"2.5px",cursor:"not-allowed",marginTop:"18px",fontFamily:SANS},
-    sm:    {background:G,color:"#000",border:"none",borderRadius:3,padding:"10px 16px",fontSize:"10px",fontWeight:800,letterSpacing:"1.5px",cursor:"pointer",fontFamily:SANS},
-    gh:    {background:"none",border:`1px solid ${BR2}`,color:MT2,borderRadius:3,padding:"10px 14px",fontSize:"10px",letterSpacing:"1.5px",cursor:"pointer",fontFamily:SANS},
+    sm:    {background:"#00AA55",color:"#fff",border:"none",borderRadius:6,padding:"10px 18px",fontSize:"13px",fontWeight:700,cursor:"pointer",fontFamily:SANS},
+    gh:    {background:"#f0f2f5",color:"#1c1e21",border:"none",borderRadius:6,padding:"10px 16px",fontSize:"13px",fontWeight:600,cursor:"pointer",fontFamily:SANS},
     bk:    {background:"none",border:"none",color:MT,fontSize:"12px",cursor:"pointer",padding:0,marginTop:10,display:"block",fontFamily:SANS},
     err:   {background:"#1a0000",border:"1px solid #440000",borderRadius:3,padding:"10px 14px",color:"#ff5555",fontSize:"13px",marginTop:10,fontFamily:SANS},
   };
@@ -711,7 +746,7 @@ export default function App(){
         <div style={{...sh.card,animation:"slideUp 0.22s ease"}}>
           <div style={sh.hdr}><LogoImg height={32}/><div style={sh.dot}/></div>
           <div style={{...sh.body,paddingBottom:loading?0:40}}>
-            {loading?<DogLoader/>:(
+            {loading?<DogLoader showProgress={true}/>:(
               <>
                 <span style={sh.tag}>ONE LAST STEP</span>
                 <h2 style={sh.h2}>Where do we reach you?</h2>
@@ -739,11 +774,11 @@ export default function App(){
     const DAY_LABELS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 
     return(
-      <div style={{minHeight:"100vh",background:BK,fontFamily:SANS,paddingBottom:60}}>
+      <div style={{minHeight:"100vh",background:"#f0f2f5",fontFamily:SANS,paddingBottom:60}}>
         {showInstall&&<InstallBanner onInstall={handleInstall} onDismiss={dismissInstall}/>}
 
         {/* HEADER */}
-        <div style={{background:`linear-gradient(180deg,#181825 0%,${CD} 100%)`,borderBottom:`1px solid ${BR}`,padding:"11px 18px",display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,zIndex:20}}>
+        <div style={{background:CD,borderBottom:"1px solid #0a0a12",padding:"11px 18px",display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,zIndex:20}}>
           <LogoImg height={32}/>
           <button onClick={()=>setTab("profile")} style={{display:"flex",alignItems:"center",gap:7,background:"#0a0a12",border:`1px solid ${BR}`,borderRadius:3,padding:"6px 11px",cursor:"pointer"}}>
             <span style={{fontSize:14}}>{rank.emoji}</span>
@@ -754,14 +789,19 @@ export default function App(){
           </button>
         </div>
 
-        {!posted&&<div style={{background:"linear-gradient(90deg,#0e0e02,#111102)",borderBottom:"1px solid #28280a",padding:"10px 20px"}}>
-          <p style={{color:"#d4d440",fontSize:"12px",margin:0,fontFamily:SANS,fontStyle:"italic"}}>{NOTIF_MESSAGES[Math.floor(Math.random()*NOTIF_MESSAGES.length)].body}</p>
+        {/* Personalized welcome */}
+        <div style={{background:"linear-gradient(135deg,rgba(0,255,133,0.07) 0%,rgba(0,255,133,0.03) 100%)",borderBottom:`1px solid rgba(0,255,133,0.12)`,padding:"18px 20px"}}>
+          <div style={{fontSize:"18px",fontWeight:700,color:TXT,fontFamily:SANS,marginBottom:4}}>{contact.name.split(" ")[0]}, this is the best decision you have made for your business.</div>
+          <div style={{fontSize:"13px",color:MT2,fontFamily:SANS,lineHeight:1.6}}>Your content plan is ready. Pick a day below, read your script, film it, and post. That is all it takes.</div>
+        </div>
+        {!posted&&<div style={{background:"#fff8e6",borderBottom:"1px solid #f0dea0",padding:"9px 20px"}}>
+          <p style={{color:"#7a6200",fontSize:"12px",margin:0,fontFamily:SANS,fontStyle:"italic"}}>{NOTIF_MESSAGES[Math.floor(Math.random()*NOTIF_MESSAGES.length)].body}</p>
         </div>}
 
         {/* TABS */}
-        <div style={{display:"flex",borderBottom:`1px solid ${BR}`,background:CD,overflowX:"auto",padding:"0 14px"}}>
+        <div style={{display:"flex",borderBottom:"1px solid #e4e6ea",background:CARD,overflowX:"auto",padding:"0 14px"}}>
           {[["week","THIS WEEK"],["story","STORY PROMPT"],["profile","MY PROFILE"]].map(([id,lbl])=>(
-            <button key={id} onClick={()=>setTab(id)} style={{background:"none",border:"none",cursor:"pointer",padding:"12px 15px",fontSize:"9px",fontWeight:700,letterSpacing:"2px",color:tab===id?G:MT,borderBottom:tab===id?`2px solid ${G}`:"2px solid transparent",whiteSpace:"nowrap",fontFamily:SANS,transition:"color 0.2s"}}>
+            <button key={id} onClick={()=>setTab(id)} style={{background:"none",border:"none",cursor:"pointer",padding:"12px 15px",fontSize:"9px",fontWeight:700,letterSpacing:"2px",color:tab===id?"#00AA55":"#65676b",borderBottom:tab===id?"2px solid #00AA55":"2px solid transparent",whiteSpace:"nowrap",fontFamily:SANS,transition:"color 0.2s"}}>
               {lbl}
             </button>
           ))}
@@ -774,27 +814,34 @@ export default function App(){
               <>
                 <div style={{display:"flex",gap:5,marginBottom:16,overflowX:"auto",paddingBottom:4}}>
                   {weekContent.map((d,i)=>(
-                    <button key={i} onClick={()=>setActiveDay(i)} className="lede-btn" style={{background:activeDay===i?G:"#0a0a14",color:activeDay===i?"#000":d.posted?G:MT,border:`1px solid ${activeDay===i?G:d.posted?"#1a3a1a":BR}`,borderRadius:3,padding:"8px 11px",fontSize:"10px",fontWeight:700,letterSpacing:"1px",cursor:"pointer",minWidth:44,position:"relative",fontFamily:SANS,transition:"all 0.15s"}}>
-                      {d.posted&&<span style={{position:"absolute",top:-5,right:-5,fontSize:"10px"}}>✓</span>}
+                    <button key={i} onClick={()=>setActiveDay(i)} style={{
+                      background:activeDay===i?"#00AA55":d.posted?"#e6f4ec":CARD,
+                      color:activeDay===i?"#fff":d.posted?"#00AA55":"#65676b",
+                      border:`2px solid ${activeDay===i?"#00AA55":d.posted?"#a8d8b9":"#e4e6ea"}`,
+                      borderRadius:8,padding:"9px 12px",fontSize:"13px",fontWeight:700,
+                      cursor:"pointer",minWidth:46,position:"relative",fontFamily:SANS,
+                      transition:"all 0.15s",boxShadow:activeDay===i?"0 2px 8px rgba(0,170,85,0.3)":"none",
+                    }}>
+                      {d.posted&&<span style={{position:"absolute",top:-5,right:-5,fontSize:"11px"}}>✓</span>}
                       {DAY_LABELS[i]}
                     </button>
                   ))}
                 </div>
 
                 {dayItem&&(
-                  <div className="su" style={{background:`linear-gradient(180deg,#111120 0%,#0a0a14 100%)`,border:`1px solid ${BR}`,borderRadius:6,overflow:"hidden",boxShadow:"0 2px 24px rgba(0,0,0,0.5)"}}>
-                    <div style={{padding:"13px 16px",borderBottom:`1px solid ${BR}`,display:"flex",justifyContent:"space-between",alignItems:"center",background:"rgba(255,255,255,0.02)"}}>
+                  <div className="su" style={{background:CARD,border:"1px solid #e4e6ea",borderRadius:8,overflow:"hidden",boxShadow:"0 2px 8px rgba(0,0,0,0.08)"}}>
+                    <div style={{padding:"14px 16px",borderBottom:"1px solid #e4e6ea",display:"flex",justifyContent:"space-between",alignItems:"center",background:"#fafbff"}}>
                       <div>
-                        <div style={{fontSize:"9px",color:G,letterSpacing:"2px",marginBottom:3,fontFamily:SANS}}>{(dayItem.story_type||"").toUpperCase()} · ALL PLATFORMS</div>
-                        <div style={{fontSize:"16px",color:TXT,fontWeight:600,fontFamily:SANS}}>{dayItem.day}</div>
+                        <div style={{fontSize:"11px",color:"#888",marginBottom:3,fontFamily:SANS}}>{dayItem.story_type||"Content"}</div>
+                        <div style={{fontSize:"19px",color:"#1c1e21",fontWeight:700,fontFamily:SANS}}>{dayItem.day}</div>
                       </div>
-                      {dayItem.posted&&<span style={{fontSize:"9px",color:G,letterSpacing:"1px",fontFamily:SANS}}>✓ POSTED</span>}
+                      {dayItem.posted&&<span style={{background:"#e6f9f0",color:"#00AA55",fontSize:"11px",fontWeight:700,padding:"4px 10px",borderRadius:20,fontFamily:SANS}}>✓ Posted today</span>}
                     </div>
 
                     {/* Editable HOOK */}
                     <div style={{padding:"16px 16px 0"}}>
                       <EditField
-                        label="HOOK — tap ✏️ to edit"
+                        label="YOUR HOOK"
                         value={dayItem.hook||""}
                         onChange={v=>updateDayItem(activeDay,{hook:v})}
                         multiline={false}
@@ -804,7 +851,7 @@ export default function App(){
                     {/* Editable SCRIPT */}
                     <div style={{padding:"0 16px"}}>
                       <EditField
-                        label="SCRIPT — tap ✏️ to edit"
+                        label="YOUR SCRIPT"
                         value={(dayItem.script||"").substring(0,400)+"…"}
                         onChange={v=>updateDayItem(activeDay,{script:v})}
                         multiline={true}
@@ -817,14 +864,14 @@ export default function App(){
                       <PlatformContent dayItem={dayItem} onUpdate={updated=>updateDayItem(activeDay,updated)}/>
                     </div>
 
-                    <div style={{padding:"12px 16px",borderTop:`1px solid ${BR}`,display:"flex",gap:7,flexWrap:"wrap",background:"rgba(0,0,0,0.2)"}}>
-                      <button className="lede-btn" style={sh.sm} onClick={()=>{setTeleScript(dayItem.script||dayItem.hook);setShowTele(true);}}>🎙️ FILM WITH TELEPROMPTER</button>
-                      {!dayItem.posted&&<button className="lede-btn" style={sh.gh} onClick={()=>handlePosted(activeDay)}>✓ MARK AS POSTED</button>}
+                    <div style={{padding:"14px 16px",borderTop:"1px solid #e4e6ea",background:"#f7f8fa"}}>
+                      <button className="lede-btn" style={{width:"100%",background:"#00AA55",color:"#fff",border:"none",borderRadius:8,padding:"14px",fontSize:"15px",fontWeight:700,cursor:"pointer",fontFamily:SANS,marginBottom:8}} onClick={()=>{setTeleScript(dayItem.script||dayItem.hook);setShowTele(true);}}>🎙️ Film This Now</button>
+                      {!dayItem.posted&&<button className="lede-btn" style={{width:"100%",background:"#fff",color:"#1c1e21",border:"1px solid #ddd",borderRadius:8,padding:"12px",fontSize:"14px",fontWeight:600,cursor:"pointer",fontFamily:SANS}} onClick={()=>handlePosted(activeDay)}>I already posted this ✓</button>}
                     </div>
                   </div>
                 )}
 
-                <button className="lede-btn" style={{...sh.gh,marginTop:12,display:"block",width:"100%",textAlign:"center"}} onClick={()=>genWeek(answers,contact.name)}>↺ REGENERATE THIS WEEK</button>
+                <button className="lede-btn" style={{background:"#f0f2f5",color:"#65676b",border:"none",borderRadius:6,padding:"11px 16px",fontSize:"13px",fontWeight:600,cursor:"pointer",fontFamily:SANS,marginTop:12,display:"block",width:"100%",textAlign:"center"}} onClick={()=>genWeek(answers,contact.name)}>↺ Regenerate This Week</button>
               </>
             ):(
               <div style={{textAlign:"center",padding:"60px 16px"}}>
@@ -839,22 +886,22 @@ export default function App(){
           <div style={{padding:"18px 14px"}}>
             <div style={{fontSize:"8px",color:MT2,letterSpacing:"2px",marginBottom:6,fontFamily:SANS}}>ON-DEMAND · AI GENERATED</div>
             <h2 style={{...sh.h2,marginBottom:8}}>Today's Story</h2>
-            <p style={{color:MT2,fontSize:"13px",lineHeight:1.8,marginBottom:20,fontFamily:SANS}}>A fresh story angle built from your answers. Works across all platforms.</p>
-            {!storyPrompt&&!loadingStory&&<button className="lede-btn" style={{...sh.btn,marginTop:0}} onClick={genStory}>GENERATE TODAY'S STORY →</button>}
+            <p style={{color:"#65676b",fontSize:"14px",lineHeight:1.8,marginBottom:20,fontFamily:SANS}}>A fresh story angle built from your answers. Works across all platforms.</p>
+            {!storyPrompt&&!loadingStory&&<button className="lede-btn" style={{background:"#00AA55",color:"#fff",border:"none",borderRadius:6,padding:"14px",fontSize:"15px",fontWeight:700,cursor:"pointer",fontFamily:SANS,width:"100%"}} onClick={genStory}>Generate Today's Story →</button>}
             {loadingStory&&<DogLoader message="Sniffing out today's story angle…"/>}
             {storyPrompt&&!loadingStory&&(
-              <div className="su" style={{background:`linear-gradient(180deg,#111120,#0a0a14)`,border:`1px solid ${BR}`,borderRadius:6,overflow:"hidden"}}>
-                <div style={{padding:"16px",borderBottom:`1px solid ${BR}`}}>
+              <div className="su" style={{background:CARD,border:"1px solid #e4e6ea",borderRadius:8,overflow:"hidden",boxShadow:"0 2px 8px rgba(0,0,0,0.08)"}}>
+                <div style={{padding:"16px",borderBottom:"1px solid #e4e6ea"}}>
                   <div style={{fontSize:"9px",color:G,letterSpacing:"2px",marginBottom:8,fontFamily:SANS}}>{(storyPrompt.story_type||"").toUpperCase()}</div>
-                  <EditField value={storyPrompt.hook||""} onChange={v=>setStoryPrompt(p=>({...p,hook:v}))} label="HOOK — tap ✏️ to edit" multiline={false}/>
+                  <EditField value={storyPrompt.hook||""} onChange={v=>setStoryPrompt(p=>({...p,hook:v}))} label="YOUR HOOK" multiline={false}/>
                 </div>
                 <div style={{padding:"16px"}}>
-                  <div style={{fontSize:"8px",color:MT2,letterSpacing:"2px",marginBottom:7,fontFamily:SANS}}>STORY DIRECTION</div>
-                  <p style={{color:MT2,fontSize:"13px",fontFamily:SANS,lineHeight:1.8,marginBottom:16}}>{storyPrompt.prompt}</p>
-                  <EditField value={storyPrompt.script||""} onChange={v=>setStoryPrompt(p=>({...p,script:v}))} label="SCRIPT — tap ✏️ to edit" multiline={true}/>
+                  <div style={{fontSize:"10px",color:"#65676b",letterSpacing:"1px",marginBottom:7,fontFamily:SANS,fontWeight:600}}>STORY DIRECTION</div>
+                  <p style={{color:"#65676b",fontSize:"14px",fontFamily:SANS,lineHeight:1.8,marginBottom:16}}>{storyPrompt.prompt}</p>
+                  <EditField value={storyPrompt.script||""} onChange={v=>setStoryPrompt(p=>({...p,script:v}))} label="YOUR SCRIPT" multiline={true}/>
                   <PlatformContent dayItem={{...storyPrompt,caption:storyPrompt.caption||storyPrompt.script?.substring(0,200)||""}} onUpdate={updated=>setStoryPrompt(p=>({...p,...updated}))}/>
                 </div>
-                <div style={{padding:"12px 16px",borderTop:`1px solid ${BR}`,display:"flex",gap:7,flexWrap:"wrap",background:"rgba(0,0,0,0.2)"}}>
+                <div style={{padding:"12px 16px",borderTop:"1px solid #e4e6ea",display:"flex",gap:7,flexWrap:"wrap",background:"#f7f8fa"}}>
                   <button className="lede-btn" style={sh.sm} onClick={()=>{setTeleScript(storyPrompt.script||storyPrompt.hook);setShowTele(true);}}>🎙️ FILM THIS</button>
                   <button className="lede-btn" style={sh.gh} onClick={genStory}>↺ NEW PROMPT</button>
                   {!posted&&<button className="lede-btn" style={sh.gh} onClick={()=>handlePosted(activeDay)}>✓ MARK AS POSTED</button>}
@@ -867,16 +914,16 @@ export default function App(){
         {/* ── PROFILE TAB ── */}
         {tab==="profile"&&(
           <div style={{padding:"18px 14px"}}>
-            <div style={{background:`linear-gradient(180deg,#111120,#0a0a14)`,border:`1px solid ${BR}`,borderRadius:6,padding:"32px 18px",textAlign:"center",marginBottom:14,boxShadow:"0 2px 24px rgba(0,0,0,0.4)"}}>
+            <div style={{background:CARD,border:"1px solid #e4e6ea",borderRadius:8,padding:"32px 18px",textAlign:"center",marginBottom:14,boxShadow:"0 2px 8px rgba(0,0,0,0.08)"}}>
               <div style={{fontSize:"56px",marginBottom:14}}>{rank.emoji}</div>
-              <div style={{fontSize:"9px",color:G,letterSpacing:"3px",marginBottom:8,fontFamily:SANS}}>YOUR CURRENT RANK</div>
-              <div style={{fontSize:"24px",fontWeight:600,color:TXT,fontFamily:SANS,marginBottom:20}}>{rank.title}</div>
+              <div style={{fontSize:"10px",color:"#00AA55",letterSpacing:"2px",marginBottom:8,fontFamily:SANS,fontWeight:700}}>YOUR CURRENT RANK</div>
+              <div style={{fontSize:"24px",fontWeight:700,color:"#1c1e21",fontFamily:SANS,marginBottom:20}}>{rank.title}</div>
               <div style={{display:"flex",gap:10,justifyContent:"center"}}>
                 {[["🔥",streak.count,"STREAK"],["⭐",streak.best||0,"BEST"],["📝",streak.total||0,"TOTAL"]].map(([e,v,l])=>(
-                  <div key={l} style={{textAlign:"center",background:"#0a0a12",border:`1px solid ${BR}`,borderRadius:3,padding:"13px 14px",flex:1}}>
+                  <div key={l} style={{textAlign:"center",background:"#f0f2f5",border:"none",borderRadius:8,padding:"13px 14px",flex:1}}>
                     <div style={{fontSize:20,marginBottom:4}}>{e}</div>
-                    <div style={{fontSize:"21px",fontWeight:700,color:TXT,fontFamily:SANS}}>{v}</div>
-                    <div style={{fontSize:"8px",color:MT,letterSpacing:"1.5px",fontFamily:SANS}}>{l}</div>
+                    <div style={{fontSize:"22px",fontWeight:800,color:"#1c1e21",fontFamily:SANS}}>{v}</div>
+                    <div style={{fontSize:"11px",color:"#65676b",letterSpacing:"1px",fontFamily:SANS,fontWeight:600}}>{l}</div>
                   </div>
                 ))}
               </div>
@@ -888,32 +935,32 @@ export default function App(){
 
             {/* CAMPAIGN ACTIONS */}
             <div style={{marginBottom:18}}>
-              <div style={{fontSize:"9px",color:MT2,letterSpacing:"2px",marginBottom:10,fontFamily:SANS}}>CAMPAIGN MANAGEMENT</div>
+              <div style={{fontSize:"11px",color:"#65676b",letterSpacing:"1px",marginBottom:12,fontFamily:SANS,fontWeight:600}}>CAMPAIGN MANAGEMENT</div>
               <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
                 <button className="lede-btn" onClick={restartQuestionnaire}
-                  style={{background:"rgba(0,255,133,0.08)",color:G,border:`1px solid rgba(0,255,133,0.2)`,borderRadius:3,padding:"10px 16px",fontSize:"10px",fontWeight:700,letterSpacing:"1px",cursor:"pointer",fontFamily:SANS}}>
+                  style={{background:"#e6f4ec",color:"#00AA55",border:"1px solid #a8d8b9",borderRadius:6,padding:"10px 16px",fontSize:"13px",fontWeight:700,cursor:"pointer",fontFamily:SANS}}>
                   ✏️ EDIT MY ANSWERS
                 </button>
                 <button className="lede-btn" onClick={startNewCampaign}
-                  style={{background:"#0a0a14",color:MT2,border:`1px solid ${BR2}`,borderRadius:3,padding:"10px 16px",fontSize:"10px",fontWeight:700,letterSpacing:"1px",cursor:"pointer",fontFamily:SANS}}>
+                  style={{background:"#f0f2f5",color:"#65676b",border:"none",borderRadius:6,padding:"10px 16px",fontSize:"13px",fontWeight:700,cursor:"pointer",fontFamily:SANS}}>
                   + NEW CAMPAIGN
                 </button>
               </div>
-              <p style={{fontSize:"11px",color:MT,fontFamily:SANS,marginTop:10,lineHeight:1.6}}>
+              <p style={{fontSize:"12px",color:"#65676b",fontFamily:SANS,marginTop:10,lineHeight:1.6}}>
                 <strong style={{color:MT2}}>Edit My Answers</strong> — update your profile for the same business.<br/>
                 <strong style={{color:MT2}}>New Campaign</strong> — start fresh for a different service or product.
               </p>
             </div>
 
             {/* RANKS */}
-            <div style={{fontSize:"9px",color:MT,letterSpacing:"2px",marginBottom:10,fontFamily:SANS}}>ALL RANKS</div>
+            <div style={{fontSize:"11px",color:"#65676b",letterSpacing:"1px",marginBottom:12,fontFamily:SANS,fontWeight:600}}>ALL RANKS</div>
             {RANKS.map(r=>{
               const earned=streak.count>=r.days;
-              return<div key={r.title} style={{display:"flex",alignItems:"center",gap:11,padding:"12px 13px",background:"#0a0a12",border:`1px solid ${earned?"#1a3a1a":BR}`,borderRadius:3,marginBottom:5,opacity:earned?1:0.28,transition:"opacity 0.3s"}}>
+              return<div key={r.title} style={{display:"flex",alignItems:"center",gap:11,padding:"12px 13px",background:CARD,border:`1px solid ${earned?"#a8d8b9":"#e4e6ea"}`,borderRadius:6,marginBottom:5,opacity:earned?1:0.35,transition:"opacity 0.3s"}}>
                 <span style={{fontSize:17,minWidth:22}}>{r.emoji}</span>
                 <div style={{flex:1}}>
-                  <div style={{fontSize:"13px",color:earned?TXT:MT,fontWeight:500,fontFamily:SANS}}>{r.title}</div>
-                  <div style={{fontSize:"10px",color:MT,fontFamily:SANS}}>{r.days===0?"Starting rank":`${r.days} consecutive days`}</div>
+                  <div style={{fontSize:"14px",color:earned?"#1c1e21":"#65676b",fontWeight:600,fontFamily:SANS}}>{r.title}</div>
+                  <div style={{fontSize:"11px",color:"#65676b",fontFamily:SANS}}>{r.days===0?"Starting rank":`${r.days} consecutive days`}</div>
                 </div>
                 {earned&&<span style={{color:G,fontSize:"11px"}}>✓</span>}
               </div>;
