@@ -8,7 +8,6 @@ const BK = "#080808";
 const CD = "#111111";
 const BR = "#1e1e1e";
 const MT = "#555555";
-
 const SANS = "'Roboto', 'Google Sans', Arial, sans-serif";
 
 const LOGO_SRC = "data:image/jpeg;base64,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";
@@ -27,33 +26,30 @@ const RANKS = [
   { days: 365, title: "Story Legend",         emoji: "👑", milestone: true  },
 ];
 
-const getRank    = (n) => RANKS.reduce((r, x) => n >= x.days ? x : r, RANKS[0]);
+const getRank     = (n) => RANKS.reduce((r, x) => n >= x.days ? x : r, RANKS[0]);
 const getNextRank = (n) => RANKS.find(x => x.days > n) || null;
 
-// ─────────────────────────────────────────────
-// COUNTRY CODES — Africa first, then global
-// ─────────────────────────────────────────────
 const COUNTRIES = [
-  { code: "UG", dial: "+256", name: "Uganda"       },
-  { code: "KE", dial: "+254", name: "Kenya"        },
-  { code: "TZ", dial: "+255", name: "Tanzania"     },
-  { code: "NG", dial: "+234", name: "Nigeria"      },
-  { code: "GH", dial: "+233", name: "Ghana"        },
-  { code: "ZA", dial: "+27",  name: "South Africa" },
-  { code: "RW", dial: "+250", name: "Rwanda"       },
-  { code: "ET", dial: "+251", name: "Ethiopia"     },
-  { code: "SN", dial: "+221", name: "Senegal"      },
-  { code: "CI", dial: "+225", name: "Côte d'Ivoire"},
-  { code: "CM", dial: "+237", name: "Cameroon"     },
-  { code: "ZM", dial: "+260", name: "Zambia"       },
-  { code: "ZW", dial: "+263", name: "Zimbabwe"     },
-  { code: "MZ", dial: "+258", name: "Mozambique"   },
-  { code: "AO", dial: "+244", name: "Angola"       },
-  { code: "BW", dial: "+267", name: "Botswana"     },
-  { code: "MW", dial: "+265", name: "Malawi"       },
-  { code: "EG", dial: "+20",  name: "Egypt"        },
-  { code: "MA", dial: "+212", name: "Morocco"      },
-  { code: "SD", dial: "+249", name: "Sudan"        },
+  { code: "UG", dial: "+256", name: "Uganda"        },
+  { code: "KE", dial: "+254", name: "Kenya"         },
+  { code: "TZ", dial: "+255", name: "Tanzania"      },
+  { code: "NG", dial: "+234", name: "Nigeria"       },
+  { code: "GH", dial: "+233", name: "Ghana"         },
+  { code: "ZA", dial: "+27",  name: "South Africa"  },
+  { code: "RW", dial: "+250", name: "Rwanda"        },
+  { code: "ET", dial: "+251", name: "Ethiopia"      },
+  { code: "SN", dial: "+221", name: "Senegal"       },
+  { code: "CI", dial: "+225", name: "Cote d'Ivoire"},
+  { code: "CM", dial: "+237", name: "Cameroon"      },
+  { code: "ZM", dial: "+260", name: "Zambia"        },
+  { code: "ZW", dial: "+263", name: "Zimbabwe"      },
+  { code: "MZ", dial: "+258", name: "Mozambique"    },
+  { code: "AO", dial: "+244", name: "Angola"        },
+  { code: "BW", dial: "+267", name: "Botswana"      },
+  { code: "MW", dial: "+265", name: "Malawi"        },
+  { code: "EG", dial: "+20",  name: "Egypt"         },
+  { code: "MA", dial: "+212", name: "Morocco"       },
+  { code: "SD", dial: "+249", name: "Sudan"         },
   { code: "──", dial: "──",   name: "──────────────", disabled: true },
   { code: "GB", dial: "+44",  name: "United Kingdom"},
   { code: "US", dial: "+1",   name: "United States" },
@@ -69,26 +65,21 @@ const COUNTRIES = [
   { code: "SG", dial: "+65",  name: "Singapore"     },
 ];
 
-// ─────────────────────────────────────────────
-// STORAGE / DATE HELPERS
-// ─────────────────────────────────────────────
 const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
 const load = (k, fb = null) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch (_) { return fb; } };
-
 const todayStr  = () => new Date().toISOString().split("T")[0];
 const weekStart = () => {
-  const d    = new Date();
+  const d = new Date();
   const diff = d.getDate() - d.getDay() + (d.getDay() === 0 ? -6 : 1);
   return new Date(new Date().setDate(diff)).toISOString().split("T")[0];
 };
-
-const getStreak = () => load("lede_streak", { count: 0, lastPosted: null, best: 0, total: 0 });
+const getStreak  = () => load("lede_streak", { count: 0, lastPosted: null, best: 0, total: 0 });
 const markPosted = () => {
   const s = getStreak();
   const today = todayStr();
   if (s.lastPosted === today) return s;
   const yest = new Date(); yest.setDate(yest.getDate() - 1);
-  s.count     = s.lastPosted === yest.toISOString().split("T")[0] ? s.count + 1 : 1;
+  s.count      = s.lastPosted === yest.toISOString().split("T")[0] ? s.count + 1 : 1;
   s.lastPosted = today;
   s.total      = (s.total || 0) + 1;
   s.best       = Math.max(s.count, s.best || 0);
@@ -96,39 +87,33 @@ const markPosted = () => {
   return s;
 };
 
-// ─────────────────────────────────────────────
-// QUESTIONS
-// ─────────────────────────────────────────────
 const QUESTIONS = [
-  { id: "what", label: "QUESTION 1 OF 12", q: "What does your business do?",
-    hint: `Be specific. Not "I do marketing." Say what actually happens.\n\nExample: "We help small restaurants in Kampala fill tables on weekdays using short videos posted on Facebook and WhatsApp. We script, film, and post for them."\n\nYour answer:` },
-  { id: "who", label: "QUESTION 2 OF 12", q: "Who is your ideal customer?",
-    hint: `Describe one real person, not a category.\n\nExample: "Her name is probably Aisha. She is 34, runs a beauty salon in Ntinda, has been in business 3 years, and is frustrated that her Instagram looks good but her bookings have not changed."\n\nYour answer:` },
-  { id: "why", label: "QUESTION 3 OF 12", q: "Why did you start this business?",
-    hint: `This is your origin story. Be honest about what broke you open.\n\nExample: "I watched my father run a great shop for 20 years. When he got sick and I took over, I realized all customers were loyal to him personally. When he was gone, so were they."\n\nYour answer:` },
-  { id: "result", label: "QUESTION 4 OF 12", q: "What is the best result you have ever gotten for a customer?",
-    hint: `Give a before and after. Use real numbers.\n\nExample: "A salon owner was spending 200,000 shillings on flyers with zero results. We ran one Facebook video campaign. Within 6 weeks she had 40 new clients and had to hire a second stylist."\n\nYour answer:` },
-  { id: "different", label: "QUESTION 5 OF 12", q: "How do you do things differently from your competitors?",
-    hint: `Name the thing you do that most in your industry refuse to do.\n\nExample: "Most photographers hand you a USB drive and disappear. We stay involved 60 days after the shoot and help clients use the photos to build trust online."\n\nYour answer:` },
-  { id: "challenge", label: "QUESTION 6 OF 12", q: "What is your biggest marketing challenge right now?",
-    hint: `Be honest about where you are stuck.\n\nExample: "People say they love my work but go with someone cheaper. I get enquiries but few bookings. I think I am not communicating my value clearly enough."\n\nYour answer:` },
-  { id: "tried", label: "QUESTION 7 OF 12", q: "What marketing have you tried before and what happened?",
-    hint: `Tell me what worked and what failed. Both matter.\n\nExample: "I tried boosting Facebook posts. Wasted 300,000 shillings, got 200 likes, zero sales. WhatsApp statuses brought 3 clients in one month with no money spent."\n\nYour answer:` },
-  { id: "price", label: "QUESTION 8 OF 12", q: "What does your product or service cost?",
-    hint: `Give actual numbers.\n\nExample: "Starter package is 350,000 shillings for one session. Full brand package is 1.2 million and includes 3 shoots, 60 photos, and a 30-day posting plan."\n\nYour answer:` },
-  { id: "objection", label: "QUESTION 9 OF 12", q: "What do people say when they do not buy from you?",
-    hint: `Write the actual words they use.\n\nExample: "They say it is too expensive. But I think what they really mean is they do not yet believe the result is worth it."\n\nYour answer:` },
-  { id: "proof", label: "QUESTION 10 OF 12", q: "What proof do you have that your business works?",
-    hint: `Testimonials, results, time in business, anything real.\n\nExample: "I have been doing this 6 years. Over 200 weddings. One bride messaged me 2 years later saying every time she looked at the photos on her wall she remembered why she chose her husband."\n\nYour answer:` },
+  { id: "what",      label: "QUESTION 1 OF 12",  q: "What does your business do?",
+    hint: `Be specific. Not "I do marketing." Say what actually happens.\n\nExample: "We help small restaurants in Kampala fill tables on weekdays using short videos posted on Facebook and WhatsApp."\n\nYour answer:` },
+  { id: "who",       label: "QUESTION 2 OF 12",  q: "Who is your ideal customer?",
+    hint: `Describe one real person, not a category.\n\nExample: "Her name is probably Aisha. She is 34, runs a beauty salon in Ntinda, has been in business 3 years."\n\nYour answer:` },
+  { id: "why",       label: "QUESTION 3 OF 12",  q: "Why did you start this business?",
+    hint: `This is your origin story. Be honest about what broke you open.\n\nExample: "I watched my father run a great shop for 20 years. When he got sick, I realized all customers were loyal to him personally."\n\nYour answer:` },
+  { id: "result",    label: "QUESTION 4 OF 12",  q: "What is the best result you have ever gotten for a customer?",
+    hint: `Give a before and after. Use real numbers.\n\nExample: "A salon owner was spending 200,000 shillings on flyers with zero results. Within 6 weeks she had 40 new clients."\n\nYour answer:` },
+  { id: "different", label: "QUESTION 5 OF 12",  q: "How do you do things differently from your competitors?",
+    hint: `Name the thing you do that most in your industry refuse to do.\n\nExample: "Most photographers hand you a USB drive and disappear. We stay involved 60 days after the shoot."\n\nYour answer:` },
+  { id: "challenge", label: "QUESTION 6 OF 12",  q: "What is your biggest marketing challenge right now?",
+    hint: `Be honest about where you are stuck.\n\nExample: "People say they love my work but go with someone cheaper."\n\nYour answer:` },
+  { id: "tried",     label: "QUESTION 7 OF 12",  q: "What marketing have you tried before and what happened?",
+    hint: `Tell me what worked and what failed. Both matter.\n\nExample: "I tried boosting Facebook posts. Wasted 300,000 shillings, got 200 likes, zero sales."\n\nYour answer:` },
+  { id: "price",     label: "QUESTION 8 OF 12",  q: "What does your product or service cost?",
+    hint: `Give actual numbers.\n\nExample: "Starter package is 350,000 shillings. Full brand package is 1.2 million."\n\nYour answer:` },
+  { id: "objection", label: "QUESTION 9 OF 12",  q: "What do people say when they do not buy from you?",
+    hint: `Write the actual words they use.\n\nExample: "They say it is too expensive."\n\nYour answer:` },
+  { id: "proof",     label: "QUESTION 10 OF 12", q: "What proof do you have that your business works?",
+    hint: `Testimonials, results, time in business, anything real.\n\nExample: "I have been doing this 6 years. Over 200 weddings."\n\nYour answer:` },
   { id: "platforms", label: "QUESTION 11 OF 12", q: "Where does your ideal customer spend their time online?",
-    hint: `Be specific about which platforms and what they do there.\n\nExample: "She is on Facebook every morning watching videos. She is on WhatsApp all day. She discovers businesses through Facebook video ads and recommendations in women entrepreneur groups."\n\nYour answer:` },
-  { id: "goal", label: "QUESTION 12 OF 12", q: "What does success look like for you in 12 months?",
-    hint: `Be specific. What exactly would have changed?\n\nExample: "I want to be fully booked 3 months in advance. Raise prices by 40 percent. Have content that brings in enquiries while I sleep."\n\nYour answer:` },
+    hint: `Be specific about which platforms.\n\nExample: "She is on Facebook every morning watching videos. She is on WhatsApp all day."\n\nYour answer:` },
+  { id: "goal",      label: "QUESTION 12 OF 12", q: "What does success look like for you in 12 months?",
+    hint: `Be specific. What exactly would have changed?\n\nExample: "I want to be fully booked 3 months in advance. Raise prices by 40 percent."\n\nYour answer:` },
 ];
 
-// ─────────────────────────────────────────────
-// ANIMATED DOG LOADER
-// ─────────────────────────────────────────────
 const LOADER_MESSAGES = [
   "Digging through your story…",
   "Sniffing out your USP…",
@@ -141,175 +126,127 @@ const LOADER_MESSAGES = [
 
 function DogLoader({ message }) {
   const [msgIdx, setMsgIdx] = useState(0);
-
   useEffect(() => {
     const id = setInterval(() => setMsgIdx(i => (i + 1) % LOADER_MESSAGES.length), 2800);
     return () => clearInterval(id);
   }, []);
-
   return (
     <>
       <style>{`
-        @keyframes digBody {
-          0%,100% { transform: translateY(0px) rotate(-4deg); }
-          50%      { transform: translateY(-10px) rotate(4deg); }
-        }
-        @keyframes tailWag {
-          0%,100% { transform: rotate(-30deg); }
-          50%      { transform: rotate(30deg); }
-        }
-        @keyframes flyPaper1 {
-          0%        { transform: translate(0,0) rotate(0deg);   opacity: 1; }
-          100%      { transform: translate(-55px,-50px) rotate(-50deg); opacity: 0; }
-        }
-        @keyframes flyPaper2 {
-          0%        { transform: translate(0,0) rotate(0deg);   opacity: 1; }
-          100%      { transform: translate(45px,-60px) rotate(40deg);  opacity: 0; }
-        }
-        @keyframes flyPaper3 {
-          0%        { transform: translate(0,0) rotate(0deg);   opacity: 1; }
-          100%      { transform: translate(-30px,-70px) rotate(-30deg); opacity: 0; }
-        }
-        @keyframes dirt1 {
-          0%        { transform: translate(0,0) scale(1); opacity: 0.8; }
-          100%      { transform: translate(-40px,-30px) scale(0); opacity: 0; }
-        }
-        @keyframes dirt2 {
-          0%        { transform: translate(0,0) scale(1); opacity: 0.8; }
-          100%      { transform: translate(35px,-25px) scale(0); opacity: 0; }
-        }
-        @keyframes dirt3 {
-          0%        { transform: translate(0,0) scale(1); opacity: 0.6; }
-          100%      { transform: translate(-20px,-45px) scale(0); opacity: 0; }
-        }
-        @keyframes msgFade {
-          0%   { opacity: 0; transform: translateY(6px); }
-          15%  { opacity: 1; transform: translateY(0); }
-          80%  { opacity: 1; transform: translateY(0); }
-          100% { opacity: 0; transform: translateY(-6px); }
-        }
-        @keyframes groundPulse {
-          0%,100% { opacity: 0.4; }
-          50%      { opacity: 0.7; }
-        }
-        .dog-body  { animation: digBody  0.5s ease-in-out infinite; transform-origin: center bottom; }
-        .dog-tail  { animation: tailWag  0.35s ease-in-out infinite; transform-origin: left center; }
-        .paper1    { animation: flyPaper1 1.1s ease-out infinite; animation-delay: 0s;    }
-        .paper2    { animation: flyPaper2 1.1s ease-out infinite; animation-delay: 0.37s; }
-        .paper3    { animation: flyPaper3 1.1s ease-out infinite; animation-delay: 0.72s; }
-        .d1        { animation: dirt1 0.9s ease-out infinite; animation-delay: 0.1s; }
-        .d2        { animation: dirt2 0.9s ease-out infinite; animation-delay: 0.3s; }
-        .d3        { animation: dirt3 0.9s ease-out infinite; animation-delay: 0.6s; }
-        .ldr-msg   { animation: msgFade 2.8s ease-in-out infinite; }
-        .ground-ln { animation: groundPulse 1s ease-in-out infinite; }
+        @keyframes digBody { 0%,100%{transform:translateY(0px) rotate(-4deg);}50%{transform:translateY(-10px) rotate(4deg);} }
+        @keyframes flyPaper1 { 0%{transform:translate(0,0) rotate(0deg);opacity:1;}100%{transform:translate(-55px,-50px) rotate(-50deg);opacity:0;} }
+        @keyframes flyPaper2 { 0%{transform:translate(0,0) rotate(0deg);opacity:1;}100%{transform:translate(45px,-60px) rotate(40deg);opacity:0;} }
+        @keyframes flyPaper3 { 0%{transform:translate(0,0) rotate(0deg);opacity:1;}100%{transform:translate(-30px,-70px) rotate(-30deg);opacity:0;} }
+        @keyframes dirt1 { 0%{transform:translate(0,0) scale(1);opacity:0.8;}100%{transform:translate(-40px,-30px) scale(0);opacity:0;} }
+        @keyframes dirt2 { 0%{transform:translate(0,0) scale(1);opacity:0.8;}100%{transform:translate(35px,-25px) scale(0);opacity:0;} }
+        @keyframes msgFade { 0%{opacity:0;transform:translateY(6px);}15%{opacity:1;transform:translateY(0);}80%{opacity:1;}100%{opacity:0;transform:translateY(-6px);} }
+        @keyframes groundPulse { 0%,100%{opacity:0.4;}50%{opacity:0.7;} }
+        .dog-body{animation:digBody 0.5s ease-in-out infinite;transform-origin:center bottom;}
+        .paper1{animation:flyPaper1 1.1s ease-out infinite;}
+        .paper2{animation:flyPaper2 1.1s ease-out infinite;animation-delay:0.37s;}
+        .paper3{animation:flyPaper3 1.1s ease-out infinite;animation-delay:0.72s;}
+        .d1{animation:dirt1 0.9s ease-out infinite;animation-delay:0.1s;}
+        .d2{animation:dirt2 0.9s ease-out infinite;animation-delay:0.3s;}
+        .ldr-msg{animation:msgFade 2.8s ease-in-out infinite;}
+        .ground-ln{animation:groundPulse 1s ease-in-out infinite;}
       `}</style>
-
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "48px 24px 40px" }}>
-        <div style={{ position: "relative", width: 160, height: 120, marginBottom: 28 }}>
-          <div className="paper1" style={{ position: "absolute", left: 68, top: 38, fontSize: 18, zIndex: 3 }}>📄</div>
-          <div className="paper2" style={{ position: "absolute", left: 72, top: 42, fontSize: 16, zIndex: 3 }}>✉️</div>
-          <div className="paper3" style={{ position: "absolute", left: 65, top: 35, fontSize: 15, zIndex: 3 }}>📋</div>
-          <div className="d1" style={{ position: "absolute", left: 62, top: 72, width: 8, height: 8, borderRadius: "50%", background: "#5a3a1a", zIndex: 2 }} />
-          <div className="d2" style={{ position: "absolute", left: 80, top: 70, width: 6, height: 6, borderRadius: "50%", background: "#6b4a2a", zIndex: 2 }} />
-          <div className="d3" style={{ position: "absolute", left: 55, top: 65, width: 5, height: 5, borderRadius: "50%", background: "#4a2e10", zIndex: 2 }} />
-          <div className="dog-body" style={{ position: "absolute", left: 40, top: 50, zIndex: 4, lineHeight: 1 }}>
-            <span style={{ fontSize: 48 }}>🐕</span>
-          </div>
-          <div style={{ position: "absolute", left: 52, top: 96, width: 56, height: 14, borderRadius: "50%", background: "radial-gradient(ellipse, #1a0e06 0%, #0a0a0a 100%)", border: "1px solid #2a1a0a" }} />
-          <div className="ground-ln" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, transparent, #00FF8544, transparent)` }} />
+      <div style={{ display:"flex", flexDirection:"column", alignItems:"center", padding:"48px 24px 40px" }}>
+        <div style={{ position:"relative", width:160, height:120, marginBottom:28 }}>
+          <div className="paper1" style={{ position:"absolute", left:68, top:38, fontSize:18, zIndex:3 }}>📄</div>
+          <div className="paper2" style={{ position:"absolute", left:72, top:42, fontSize:16, zIndex:3 }}>✉️</div>
+          <div className="paper3" style={{ position:"absolute", left:65, top:35, fontSize:15, zIndex:3 }}>📋</div>
+          <div className="d1" style={{ position:"absolute", left:62, top:72, width:8, height:8, borderRadius:"50%", background:"#5a3a1a", zIndex:2 }} />
+          <div className="d2" style={{ position:"absolute", left:80, top:70, width:6, height:6, borderRadius:"50%", background:"#6b4a2a", zIndex:2 }} />
+          <div className="dog-body" style={{ position:"absolute", left:40, top:50, zIndex:4 }}><span style={{ fontSize:48 }}>🐕</span></div>
+          <div style={{ position:"absolute", left:52, top:96, width:56, height:14, borderRadius:"50%", background:"radial-gradient(ellipse, #1a0e06 0%, #0a0a0a 100%)", border:"1px solid #2a1a0a" }} />
+          <div className="ground-ln" style={{ position:"absolute", bottom:0, left:0, right:0, height:2, background:`linear-gradient(90deg, transparent, #00FF8544, transparent)` }} />
         </div>
-        <div key={msgIdx} className="ldr-msg" style={{ color: "#aaa", fontSize: "15px", fontFamily: SANS, fontStyle: "italic", letterSpacing: "0.3px", textAlign: "center", minHeight: 28 }}>
+        <div key={msgIdx} className="ldr-msg" style={{ color:"#aaa", fontSize:"15px", fontFamily:SANS, fontStyle:"italic", textAlign:"center", minHeight:28 }}>
           {message || LOADER_MESSAGES[msgIdx]}
         </div>
-        <div style={{ display: "flex", gap: 6, marginTop: 18 }}>
-          {[0, 1, 2].map(i => (
-            <div key={i} style={{ width: 5, height: 5, borderRadius: "50%", background: G, opacity: 0.4, animation: `digBody 0.8s ease-in-out ${i * 0.25}s infinite`, boxShadow: `0 0 6px ${G}` }} />
-          ))}
+        <div style={{ display:"flex", gap:6, marginTop:18 }}>
+          {[0,1,2].map(i => <div key={i} style={{ width:5, height:5, borderRadius:"50%", background:G, opacity:0.4, animation:`digBody 0.8s ease-in-out ${i*0.25}s infinite`, boxShadow:`0 0 6px ${G}` }} />)}
         </div>
       </div>
     </>
   );
 }
 
-// ─────────────────────────────────────────────
-// LOGO COMPONENT — uses landscape image
-// ─────────────────────────────────────────────
 function LogoImg({ height = 36 }) {
-  return (
-    <img
-      src={LOGO_SRC}
-      alt="LEDE"
-      style={{ height: height, width: "auto", display: "block", objectFit: "contain" }}
-    />
-  );
+  return <img src={LOGO_SRC} alt="LEDE" style={{ height, width:"auto", display:"block", objectFit:"contain" }} />;
 }
 
-// ─────────────────────────────────────────────
-// PHONE INPUT WITH COUNTRY CODE
-// ─────────────────────────────────────────────
-function PhoneInput({ value, onChange, style = {} }) {
+function PhoneInput({ value, onChange }) {
   const [dialCode, setDialCode] = useState("+256");
   const [number, setNumber]     = useState("");
-
-  useEffect(() => {
-    const combined = dialCode + number;
-    onChange(combined);
-  }, [dialCode, number]);
-
+  useEffect(() => { onChange(dialCode + number); }, [dialCode, number]);
   return (
-    <div style={{ display: "flex", gap: 0, marginBottom: 4 }}>
-      <select
-        value={dialCode}
-        onChange={e => setDialCode(e.target.value)}
-        style={{ background: "#f5f5f5", border: "1px solid #ccc", borderRight: "none", borderRadius: "2px 0 0 2px", padding: "12px 8px", fontSize: "14px", color: "#000", fontFamily: SANS, outline: "none", cursor: "pointer", minWidth: 86, flexShrink: 0 }}
-      >
-        {COUNTRIES.map((c, i) =>
-          c.disabled
-            ? <option key={i} disabled value="">──────</option>
-            : <option key={c.code} value={c.dial}>{c.dial} {c.name}</option>
+    <div style={{ display:"flex", gap:0, marginBottom:4 }}>
+      <select value={dialCode} onChange={e => setDialCode(e.target.value)}
+        style={{ background:"#f5f5f5", border:"1px solid #ccc", borderRight:"none", borderRadius:"2px 0 0 2px", padding:"12px 8px", fontSize:"14px", color:"#000", fontFamily:SANS, outline:"none", cursor:"pointer", minWidth:86, flexShrink:0 }}>
+        {COUNTRIES.map((c,i) => c.disabled
+          ? <option key={i} disabled value="">──────</option>
+          : <option key={c.code} value={c.dial}>{c.dial} {c.name}</option>
         )}
       </select>
-      <input
-        type="tel"
-        placeholder="WhatsApp number"
-        value={number}
-        onChange={e => setNumber(e.target.value)}
-        onFocus={e => { e.target.style.borderColor = G; e.target.style.outline = `1px solid ${G}`; }}
-        onBlur={e  => { e.target.style.borderColor = "#ccc"; e.target.style.outline = "none"; }}
-        style={{ flex: 1, background: "#fff", border: "1px solid #ccc", borderRadius: "0 2px 2px 0", padding: "12px 14px", fontSize: "14px", color: "#000", fontFamily: SANS, outline: "none", ...style }}
+      <input type="tel" placeholder="WhatsApp number" value={number} onChange={e => setNumber(e.target.value)}
+        onFocus={e => { e.target.style.borderColor=G; e.target.style.outline=`1px solid ${G}`; }}
+        onBlur={e  => { e.target.style.borderColor="#ccc"; e.target.style.outline="none"; }}
+        style={{ flex:1, background:"#fff", border:"1px solid #ccc", borderRadius:"0 2px 2px 0", padding:"12px 14px", fontSize:"14px", color:"#000", fontFamily:SANS, outline:"none" }}
       />
     </div>
   );
 }
 
+
 // ─────────────────────────────────────────────
-// TELEPROMPTER
+// TELEPROMPTER — full featured
 // ─────────────────────────────────────────────
 function Teleprompter({ script, onClose }) {
-  const vidRef    = useRef(null);
-  const txtRef    = useRef(null);
-  const animRef   = useRef(null);
-  const streamRef = useRef(null);
-  const posRef    = useRef(0);
+  const vidRef       = useRef(null);
+  const canvasRef    = useRef(null);
+  const txtRef       = useRef(null);
+  const animRef      = useRef(null);
+  const streamRef    = useRef(null);
+  const recorderRef  = useRef(null);
+  const chunksRef    = useRef([]);
+  const posRef       = useRef(0);
 
-  const [playing, setPlaying] = useState(false);
-  const [speed,   setSpeed]   = useState(38);
-  const [camOn,   setCamOn]   = useState(false);
-  const [camErr,  setCamErr]  = useState("");
+  const [playing,    setPlaying]    = useState(false);
+  const [speed,      setSpeed]      = useState(38);
+  const [camOn,      setCamOn]      = useState(false);
+  const [camErr,     setCamErr]     = useState("");
+  const [landscape,  setLandscape]  = useState(false);
+  const [beauty,     setBeauty]     = useState(true);
+  const [recording,  setRecording]  = useState(false);
+  const [countdown,  setCountdown]  = useState(null); // null | 3 | 2 | 1 | "GO"
+  const [savedUrl,   setSavedUrl]   = useState(null);
+  const [recTime,    setRecTime]    = useState(0);
+  const recTimerRef  = useRef(null);
 
+  // ── Start camera ──
   useEffect(() => {
     (async () => {
       try {
-        const s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false });
-        if (vidRef.current) { vidRef.current.srcObject = s; streamRef.current = s; setCamOn(true); }
-      } catch { setCamErr("Camera unavailable — script only mode."); }
+        const s = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 720 } },
+          audio: true,
+        });
+        if (vidRef.current) { vidRef.current.srcObject = s; }
+        streamRef.current = s;
+        setCamOn(true);
+      } catch (e) {
+        setCamErr("Camera unavailable — script only mode.");
+      }
     })();
     return () => {
       streamRef.current?.getTracks().forEach(t => t.stop());
-      if (animRef.current) cancelAnimationFrame(animRef.current);
+      if (animRef.current)    cancelAnimationFrame(animRef.current);
+      if (recTimerRef.current) clearInterval(recTimerRef.current);
     };
   }, []);
 
+  // ── Scroll animation ──
   useEffect(() => {
     if (playing && txtRef.current) {
       let last = null;
@@ -330,28 +267,129 @@ function Teleprompter({ script, onClose }) {
     return () => { if (animRef.current) { cancelAnimationFrame(animRef.current); animRef.current = null; } };
   }, [playing, speed]);
 
-  const reset = () => {
+  const resetScroll = () => {
     posRef.current = 0;
     if (txtRef.current) txtRef.current.style.transform = "translateY(0)";
     setPlaying(false);
   };
 
+  // ── Countdown then start ──
+  const startWithCountdown = () => {
+    if (playing) { setPlaying(false); return; }
+    let n = 3;
+    setCountdown(n);
+    const id = setInterval(() => {
+      n--;
+      if (n > 0) {
+        setCountdown(n);
+      } else if (n === 0) {
+        setCountdown("GO");
+        setTimeout(() => { setCountdown(null); setPlaying(true); }, 600);
+        clearInterval(id);
+      }
+    }, 1000);
+  };
+
+  // ── Recording ──
+  const startRecording = () => {
+    if (!streamRef.current) return;
+    chunksRef.current = [];
+    setSavedUrl(null);
+    const rec = new MediaRecorder(streamRef.current, { mimeType: "video/webm;codecs=vp9,opus" });
+    rec.ondataavailable = (e) => { if (e.data.size > 0) chunksRef.current.push(e.data); };
+    rec.onstop = () => {
+      const blob = new Blob(chunksRef.current, { type: "video/webm" });
+      setSavedUrl(URL.createObjectURL(blob));
+    };
+    rec.start(100);
+    recorderRef.current = rec;
+    setRecording(true);
+    setRecTime(0);
+    recTimerRef.current = setInterval(() => setRecTime(t => t + 1), 1000);
+  };
+
+  const stopRecording = () => {
+    recorderRef.current?.stop();
+    setRecording(false);
+    clearInterval(recTimerRef.current);
+  };
+
+  const downloadVideo = () => {
+    if (!savedUrl) return;
+    const a = document.createElement("a");
+    a.href = savedUrl;
+    a.download = "lede-recording.webm";
+    a.click();
+  };
+
+  const fmtTime = (s) => `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
+
+  // ── Beauty filter CSS ──
+  const beautyFilter = beauty
+    ? "blur(0.9px) contrast(1.12) saturate(1.18) brightness(1.06) sepia(0.04)"
+    : "none";
+
   const lines = script.split("\n").filter(l => l.trim());
 
+  // ── Landscape wrapper style ──
+  const wrapStyle = landscape ? {
+    position: "fixed", inset: 0, zIndex: 9999,
+    width: "100vh", height: "100vw",
+    top: "50%", left: "50%",
+    transform: "translate(-50%, -50%) rotate(90deg)",
+    background: "#000", overflow: "hidden",
+  } : {
+    position: "fixed", inset: 0, background: "#000", zIndex: 9999, overflow: "hidden",
+  };
+
   return (
-    <div style={{ position: "fixed", inset: 0, background: "#000", zIndex: 9999, overflow: "hidden" }}>
+    <div style={wrapStyle}>
+      {/* ── Camera feed ── */}
       {camOn && (
         <video ref={vidRef} autoPlay playsInline muted
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", transform: "scaleX(-1)", opacity: 0.28 }} />
+          style={{
+            position: "absolute", inset: 0,
+            width: "100%", height: "100%",
+            objectFit: "cover",
+            transform: "scaleX(-1)",
+            opacity: 0.35,
+            filter: beautyFilter,
+            transition: "filter 0.3s",
+          }}
+        />
       )}
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "200px", background: "linear-gradient(transparent, #000)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", top: "38%", left: 0, right: 0, height: "2px", background: "rgba(0,255,133,0.15)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "160px", overflow: "hidden", padding: "56px 28px 0" }}>
+
+      {/* ── Beauty overlay — warm soft tone ── */}
+      {camOn && beauty && (
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "radial-gradient(ellipse at center, rgba(255,210,180,0.08) 0%, rgba(0,0,0,0.1) 100%)",
+          pointerEvents: "none", zIndex: 1,
+        }} />
+      )}
+
+      {/* ── Gradient fade bottom ── */}
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "220px", background: "linear-gradient(transparent, #000)", pointerEvents: "none", zIndex: 2 }} />
+
+      {/* ── Reading line ── */}
+      <div style={{ position: "absolute", top: "38%", left: 0, right: 0, height: "2px", background: "rgba(0,255,133,0.15)", pointerEvents: "none", zIndex: 3 }} />
+
+      {/* ── Script ── */}
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: "180px", overflow: "hidden", padding: "56px 28px 0", zIndex: 4 }}>
         <div ref={txtRef}>
           {lines.map((line, i) => {
             const isH = line.startsWith("##") || (line === line.toUpperCase() && line.length > 4 && line.length < 40);
             return (
-              <p key={i} style={{ color: isH ? G : "#fff", fontSize: isH ? "12px" : "30px", lineHeight: isH ? 1.4 : 1.55, marginBottom: isH ? "4px" : "26px", fontFamily: SANS, fontWeight: isH ? 700 : 400, letterSpacing: isH ? "2.5px" : "0.4px", textShadow: "0 2px 20px rgba(0,0,0,0.95)" }}>
+              <p key={i} style={{
+                color: isH ? "#00FF85" : "#fff",
+                fontSize: isH ? "12px" : "30px",
+                lineHeight: isH ? 1.4 : 1.55,
+                marginBottom: isH ? "4px" : "26px",
+                fontFamily: "'Roboto', Arial, sans-serif",
+                fontWeight: isH ? 700 : 400,
+                letterSpacing: isH ? "2.5px" : "0.4px",
+                textShadow: "0 2px 20px rgba(0,0,0,0.95)",
+              }}>
                 {line.replace(/^##\s*/, "")}
               </p>
             );
@@ -359,29 +397,132 @@ function Teleprompter({ script, onClose }) {
           <div style={{ height: "70vh" }} />
         </div>
       </div>
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "14px 20px 32px", display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", background: "rgba(0,0,0,0.9)" }}>
-        <button onClick={() => setPlaying(p => !p)} style={{ background: G, color: "#000", border: "none", borderRadius: "2px", padding: "14px 28px", fontSize: "11px", fontWeight: 800, letterSpacing: "2px", cursor: "pointer", minWidth: 90, fontFamily: SANS }}>
-          {playing ? "⏸ PAUSE" : "▶ START"}
-        </button>
-        <div style={{ display: "flex", alignItems: "center", background: "#0a0a0a", border: `1px solid ${BR}`, borderRadius: "2px" }}>
-          <button onClick={() => setSpeed(s => Math.max(12, s - 8))} style={{ background: "none", border: "none", color: "#fff", padding: "10px 16px", fontSize: "20px", cursor: "pointer" }}>−</button>
-          <span style={{ color: MT, fontSize: "9px", letterSpacing: "1px", padding: "0 6px", fontFamily: SANS }}>SPEED</span>
-          <button onClick={() => setSpeed(s => Math.min(120, s + 8))} style={{ background: "none", border: "none", color: "#fff", padding: "10px 16px", fontSize: "20px", cursor: "pointer" }}>+</button>
-        </div>
-        <button onClick={reset} style={{ background: "#0a0a0a", border: `1px solid ${BR}`, color: MT, borderRadius: "2px", padding: "12px 14px", fontSize: "14px", cursor: "pointer" }}>↺</button>
-        <button onClick={() => { streamRef.current?.getTracks().forEach(t => t.stop()); onClose(); }}
-          style={{ marginLeft: "auto", background: "none", border: `1px solid ${BR}`, color: MT, borderRadius: "2px", padding: "12px 16px", fontSize: "10px", letterSpacing: "1.5px", cursor: "pointer", fontFamily: SANS }}>
-          ✕ CLOSE
-        </button>
-      </div>
-      {camErr && (
-        <div style={{ position: "absolute", top: 12, right: 12, background: "#1a0000", border: "1px solid #330000", borderRadius: "2px", padding: "6px 12px", color: "#ff8888", fontSize: "10px" }}>
-          {camErr}
+
+      {/* ── COUNTDOWN OVERLAY ── */}
+      {countdown !== null && (
+        <div style={{
+          position: "absolute", inset: 0, zIndex: 10,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          background: "rgba(0,0,0,0.55)",
+        }}>
+          <div style={{
+            fontSize: countdown === "GO" ? "80px" : "140px",
+            fontWeight: 900,
+            color: countdown === "GO" ? "#00FF85" : "#fff",
+            fontFamily: "'Roboto', Arial, sans-serif",
+            textShadow: `0 0 60px ${countdown === "GO" ? "#00FF85" : "#fff"}`,
+            animation: "pulse 0.9s ease-in-out",
+          }}>
+            {countdown}
+          </div>
         </div>
       )}
+
+      {/* ── Saved video preview ── */}
+      {savedUrl && (
+        <div style={{ position: "absolute", top: 12, left: 12, zIndex: 12, background: "rgba(0,0,0,0.9)", border: "1px solid #00FF85", borderRadius: 4, padding: "10px 14px" }}>
+          <div style={{ fontSize: "10px", color: "#00FF85", letterSpacing: "1.5px", marginBottom: 8, fontFamily: "'Roboto', Arial, sans-serif" }}>✓ RECORDING SAVED</div>
+          <button onClick={downloadVideo} style={{ background: "#00FF85", color: "#000", border: "none", borderRadius: 2, padding: "8px 16px", fontSize: "10px", fontWeight: 800, letterSpacing: "1.5px", cursor: "pointer", fontFamily: "'Roboto', Arial, sans-serif" }}>
+            ↓ DOWNLOAD VIDEO
+          </button>
+        </div>
+      )}
+
+      {/* ── REC indicator ── */}
+      {recording && (
+        <div style={{ position: "absolute", top: 12, right: 12, zIndex: 12, display: "flex", alignItems: "center", gap: 7, background: "rgba(0,0,0,0.75)", border: "1px solid #ff3333", borderRadius: 2, padding: "6px 12px" }}>
+          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#ff3333", animation: "pulse 1s infinite" }} />
+          <span style={{ color: "#ff3333", fontSize: "11px", fontWeight: 700, fontFamily: "'Roboto', Arial, sans-serif", letterSpacing: "1px" }}>REC {fmtTime(recTime)}</span>
+        </div>
+      )}
+
+      {/* ── CONTROLS BAR ── */}
+      <div style={{
+        position: "absolute", bottom: 0, left: 0, right: 0,
+        padding: "12px 14px 28px",
+        display: "flex", flexDirection: "column", gap: 8,
+        background: "rgba(0,0,0,0.92)", zIndex: 8,
+      }}>
+        {/* Row 1 — main controls */}
+        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+          {/* Play / Pause */}
+          <button onClick={startWithCountdown} style={{
+            background: "#00FF85", color: "#000", border: "none", borderRadius: 2,
+            padding: "13px 22px", fontSize: "10px", fontWeight: 800,
+            letterSpacing: "2px", cursor: "pointer", fontFamily: "'Roboto', Arial, sans-serif", minWidth: 80,
+          }}>
+            {playing ? "⏸ PAUSE" : countdown ? "..." : "▶ START"}
+          </button>
+
+          {/* Speed */}
+          <div style={{ display: "flex", alignItems: "center", background: "#0a0a0a", border: "1px solid #1e1e1e", borderRadius: 2 }}>
+            <button onClick={() => setSpeed(s => Math.max(12, s - 8))} style={{ background: "none", border: "none", color: "#fff", padding: "10px 13px", fontSize: "18px", cursor: "pointer" }}>−</button>
+            <span style={{ color: "#555", fontSize: "9px", letterSpacing: "1px", padding: "0 4px", fontFamily: "'Roboto', Arial, sans-serif" }}>SPEED</span>
+            <button onClick={() => setSpeed(s => Math.min(120, s + 8))} style={{ background: "none", border: "none", color: "#fff", padding: "10px 13px", fontSize: "18px", cursor: "pointer" }}>+</button>
+          </div>
+
+          {/* Reset */}
+          <button onClick={resetScroll} style={{ background: "#0a0a0a", border: "1px solid #1e1e1e", color: "#555", borderRadius: 2, padding: "11px 12px", fontSize: "14px", cursor: "pointer" }}>↺</button>
+
+          {/* Landscape */}
+          <button onClick={() => setLandscape(l => !l)} style={{
+            background: landscape ? "#00FF85" : "#0a0a0a",
+            color: landscape ? "#000" : "#555",
+            border: `1px solid ${landscape ? "#00FF85" : "#1e1e1e"}`,
+            borderRadius: 2, padding: "11px 12px", fontSize: "13px", cursor: "pointer",
+          }} title="Rotate landscape">⟳</button>
+
+          {/* Close */}
+          <button onClick={() => { stopRecording(); streamRef.current?.getTracks().forEach(t => t.stop()); onClose(); }}
+            style={{ marginLeft: "auto", background: "none", border: "1px solid #1e1e1e", color: "#555", borderRadius: 2, padding: "11px 14px", fontSize: "9px", letterSpacing: "1.5px", cursor: "pointer", fontFamily: "'Roboto', Arial, sans-serif" }}>
+            ✕
+          </button>
+        </div>
+
+        {/* Row 2 — camera controls */}
+        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+          {/* Record button */}
+          {camOn && (
+            <button onClick={recording ? stopRecording : startRecording} style={{
+              background: recording ? "#ff3333" : "#0a0a0a",
+              color: recording ? "#fff" : "#888",
+              border: `1px solid ${recording ? "#ff3333" : "#1e1e1e"}`,
+              borderRadius: 2, padding: "9px 16px", fontSize: "9px", fontWeight: 800,
+              letterSpacing: "1.5px", cursor: "pointer", fontFamily: "'Roboto', Arial, sans-serif",
+            }}>
+              {recording ? "⏹ STOP REC" : "⏺ RECORD"}
+            </button>
+          )}
+
+          {/* Beauty filter toggle */}
+          {camOn && (
+            <button onClick={() => setBeauty(b => !b)} style={{
+              background: beauty ? "rgba(255,180,150,0.15)" : "#0a0a0a",
+              color: beauty ? "#ffb496" : "#555",
+              border: `1px solid ${beauty ? "rgba(255,150,100,0.4)" : "#1e1e1e"}`,
+              borderRadius: 2, padding: "9px 14px", fontSize: "9px", fontWeight: 700,
+              letterSpacing: "1.5px", cursor: "pointer", fontFamily: "'Roboto', Arial, sans-serif",
+            }}>
+              ✨ {beauty ? "BEAUTY ON" : "BEAUTY OFF"}
+            </button>
+          )}
+
+          {camErr && (
+            <span style={{ color: "#ff8888", fontSize: "10px", fontFamily: "'Roboto', Arial, sans-serif" }}>{camErr}</span>
+          )}
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.7; transform: scale(0.95); }
+        }
+      `}</style>
     </div>
   );
 }
+
 
 // ─────────────────────────────────────────────
 // MAIN APP
@@ -390,8 +531,8 @@ export default function App() {
   const [screen,       setScreen]       = useState("loading");
   const [step,         setStep]         = useState(0);
   const [answers,      setAnswers]      = useState({});
-  const [contact,      setContact]      = useState({ name: "", email: "", whatsapp: "" });
-  const [streak,       setStreak]       = useState({ count: 0, lastPosted: null, best: 0, total: 0 });
+  const [contact,      setContact]      = useState({ name:"", email:"", whatsapp:"" });
+  const [streak,       setStreak]       = useState({ count:0, lastPosted:null, best:0, total:0 });
   const [weekContent,  setWeekContent]  = useState(null);
   const [activeDay,    setActiveDay]    = useState(0);
   const [storyPrompt,  setStoryPrompt]  = useState(null);
@@ -404,30 +545,22 @@ export default function App() {
   const [loadingStory, setLoadingStory] = useState(false);
   const [error,        setError]        = useState("");
 
-  // ── INJECT FONTS + FAVICON + PAGE TITLE ──
   useEffect(() => {
-    // Google Fonts
     const link = document.createElement("link");
     link.href = "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap";
     link.rel  = "stylesheet";
     document.head.appendChild(link);
-
-    // Favicon — brand the browser tab with the LEDE icon
     const old = document.querySelector("link[rel~='icon']");
     if (old) document.head.removeChild(old);
-    const fav   = document.createElement("link");
-    fav.rel     = "icon";
-    fav.type    = "image/jpeg";
-    fav.href    = ICON_SRC;
+    const fav = document.createElement("link");
+    fav.rel   = "icon"; fav.type = "image/jpeg"; fav.href = ICON_SRC;
     document.head.appendChild(fav);
-
-    // Page title
     document.title = "LEDE — Content Engine for African SMEs";
   }, []);
 
   useEffect(() => {
     const profile = load("lede_profile");
-    const s       = getStreak();
+    const s = getStreak();
     setStreak(s);
     if (profile?.answers && profile?.contact) {
       setAnswers(profile.answers);
@@ -440,33 +573,33 @@ export default function App() {
         genWeek(profile.answers, profile.contact.name);
       }
       setScreen("dashboard");
-      askNotifPermission();
+      askNotif();
     } else {
       setScreen("welcome");
     }
   }, []);
 
-  const askNotifPermission = () => {
+  const askNotif = () => {
     if ("Notification" in window && Notification.permission === "default") Notification.requestPermission();
   };
 
   const todayDayIdx = (days) => {
     const names = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     const t = names[new Date().getDay()];
-    const i = (days || []).findIndex(d => d.day === t);
+    const i = (days||[]).findIndex(d => d.day === t);
     return i >= 0 ? i : 0;
   };
 
   const genWeek = async (ans, name) => {
     setLoadingWeek(true);
     try {
-      const res  = await fetch("/api/weekly", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ answers: ans, name, weekStart: weekStart() }) });
+      const res  = await fetch("/api/weekly", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ answers:ans, name, weekStart:weekStart() }) });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
       setWeekContent(data.week);
       setActiveDay(todayDayIdx(data.week));
-      save("lede_week", { weekStart: weekStart(), days: data.week });
-    } catch (e) { console.error(e); }
+      save("lede_week", { weekStart:weekStart(), days:data.week });
+    } catch(e) { console.error(e); }
     finally { setLoadingWeek(false); }
   };
 
@@ -474,11 +607,11 @@ export default function App() {
     setLoadingStory(true); setStoryPrompt(null);
     try {
       const profile = load("lede_profile");
-      const res  = await fetch("/api/story", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ answers: profile.answers, name: profile.contact.name, date: todayStr() }) });
+      const res  = await fetch("/api/story", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ answers:profile.answers, name:profile.contact.name, date:todayStr() }) });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
       setStoryPrompt(data);
-    } catch (e) { console.error(e); }
+    } catch(e) { console.error(e); }
     finally { setLoadingStory(false); }
   };
 
@@ -489,76 +622,63 @@ export default function App() {
     setStreak(newS);
     if (curr.milestone && curr.title !== prev.title) setMilestone(curr);
     if (weekContent) {
-      const updated = weekContent.map((d, i) => i === idx ? { ...d, posted: true } : d);
+      const updated = weekContent.map((d,i) => i===idx ? {...d, posted:true} : d);
       setWeekContent(updated);
-      save("lede_week", { weekStart: weekStart(), days: updated });
+      save("lede_week", { weekStart:weekStart(), days:updated });
     }
   };
 
-  // ── ONBOARDING — saves profile + fires tracking ──
   const handleOnboard = async () => {
     if (!contact.name.trim() || !contact.email.trim() || !contact.whatsapp.trim()) return;
     setLoading(true); setError("");
     try {
-      const res  = await fetch("/api/generate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ answers, name: contact.name }) });
+      const res  = await fetch("/api/generate", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ answers, name:contact.name }) });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
       save("lede_strategy", data);
       save("lede_profile", { answers, contact });
-
-      // ── TRACK SIGNUP — fire and forget, never blocks the user ──
       fetch("/api/track", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name:     contact.name,
-          email:    contact.email,
-          whatsapp: contact.whatsapp,
-          business: answers.what || "",
-          date:     new Date().toISOString(),
-        }),
-      }).catch(() => {});
-
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({ name:contact.name, email:contact.email, whatsapp:contact.whatsapp, business:answers.what||"", date:new Date().toISOString() }),
+      }).catch(()=>{});
       setScreen("dashboard");
       genWeek(answers, contact.name);
-      askNotifPermission();
-    } catch (e) { setError(e.message); }
+      askNotif();
+    } catch(e) { setError(e.message); }
     finally { setLoading(false); }
   };
 
-  // ── SHARED STYLES ──
   const sh = {
-    page: { minHeight: "100vh", background: BK, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: SANS, padding: "20px 16px" },
-    card: { width: "100%", maxWidth: "520px", background: CD, border: `1px solid ${BR}`, borderRadius: "4px", overflow: "hidden" },
-    hdr:  { padding: "20px 30px", borderBottom: `1px solid ${BR}`, display: "flex", alignItems: "center", justifyContent: "space-between" },
-    dot:  { width: 8, height: 8, borderRadius: "50%", background: G, boxShadow: `0 0 10px ${G}` },
-    body: { padding: "30px 30px 40px" },
-    tag:  { display: "inline-block", fontSize: "9px", letterSpacing: "2.5px", fontWeight: 700, color: G, background: "#0a0a0a", padding: "5px 11px", borderRadius: "2px", marginBottom: "18px", fontFamily: SANS },
-    h1:   { fontSize: "30px", fontWeight: 900, color: "#fff", lineHeight: 1.15, marginBottom: "10px", fontFamily: SANS, letterSpacing: "-0.5px" },
-    h2:   { fontSize: "22px", fontWeight: 700, color: "#fff", lineHeight: 1.3, marginBottom: "18px", fontFamily: SANS, letterSpacing: "-0.2px" },
-    para: { fontSize: "15px", color: MT, lineHeight: 1.7, marginBottom: "24px", fontFamily: SANS, fontWeight: 400 },
-    prog: { display: "flex", gap: 3, marginBottom: 28 },
-    bar:  (on) => ({ height: 2, flex: 1, background: on ? G : "#1e1e1e", borderRadius: 2 }),
-    ta:   { width: "100%", boxSizing: "border-box", background: "#fff", border: "1px solid #ccc", borderRadius: 2, padding: "14px", color: "#000", fontSize: "15px", lineHeight: 1.75, resize: "vertical", minHeight: "152px", fontFamily: SANS, outline: "none" },
-    inp:  { width: "100%", boxSizing: "border-box", background: "#fff", border: "1px solid #ccc", borderRadius: 2, padding: "13px 14px", color: "#000", fontSize: "15px", fontFamily: SANS, outline: "none", marginBottom: "10px" },
-    btn:  { width: "100%", background: G, color: "#000", border: "none", borderRadius: 2, padding: "16px", fontSize: "11px", fontWeight: 800, letterSpacing: "2.5px", cursor: "pointer", marginTop: "20px", fontFamily: SANS },
-    btnX: { width: "100%", background: "#141414", color: "#2a2a2a", border: "none", borderRadius: 2, padding: "16px", fontSize: "11px", fontWeight: 800, letterSpacing: "2.5px", cursor: "not-allowed", marginTop: "20px", fontFamily: SANS },
-    sm:   { background: G, color: "#000", border: "none", borderRadius: 2, padding: "11px 20px", fontSize: "10px", fontWeight: 800, letterSpacing: "1.5px", cursor: "pointer", fontFamily: SANS },
-    gh:   { background: "none", border: `1px solid ${BR}`, color: MT, borderRadius: 2, padding: "11px 18px", fontSize: "10px", letterSpacing: "1.5px", cursor: "pointer", fontFamily: SANS },
-    bk:   { background: "none", border: "none", color: "#2a2a2a", fontSize: "12px", cursor: "pointer", padding: 0, marginTop: 12, display: "block", fontFamily: SANS },
-    err:  { background: "#1a0000", border: "1px solid #440000", borderRadius: 2, padding: "10px 14px", color: "#ff5555", fontSize: "13px", marginTop: 10, fontFamily: SANS },
+    page: { minHeight:"100vh", background:BK, display:"flex", alignItems:"center", justifyContent:"center", fontFamily:SANS, padding:"20px 16px" },
+    card: { width:"100%", maxWidth:"520px", background:CD, border:`1px solid ${BR}`, borderRadius:"4px", overflow:"hidden" },
+    hdr:  { padding:"20px 30px", borderBottom:`1px solid ${BR}`, display:"flex", alignItems:"center", justifyContent:"space-between" },
+    dot:  { width:8, height:8, borderRadius:"50%", background:G, boxShadow:`0 0 10px ${G}` },
+    body: { padding:"30px 30px 40px" },
+    tag:  { display:"inline-block", fontSize:"9px", letterSpacing:"2.5px", fontWeight:700, color:G, background:"#0a0a0a", padding:"5px 11px", borderRadius:"2px", marginBottom:"18px", fontFamily:SANS },
+    h1:   { fontSize:"30px", fontWeight:900, color:"#fff", lineHeight:1.15, marginBottom:"10px", fontFamily:SANS, letterSpacing:"-0.5px" },
+    h2:   { fontSize:"22px", fontWeight:700, color:"#fff", lineHeight:1.3, marginBottom:"18px", fontFamily:SANS, letterSpacing:"-0.2px" },
+    para: { fontSize:"15px", color:MT, lineHeight:1.7, marginBottom:"24px", fontFamily:SANS },
+    prog: { display:"flex", gap:3, marginBottom:28 },
+    bar:  (on) => ({ height:2, flex:1, background:on?G:"#1e1e1e", borderRadius:2 }),
+    ta:   { width:"100%", boxSizing:"border-box", background:"#fff", border:"1px solid #ccc", borderRadius:2, padding:"14px", color:"#000", fontSize:"15px", lineHeight:1.75, resize:"vertical", minHeight:"152px", fontFamily:SANS, outline:"none" },
+    inp:  { width:"100%", boxSizing:"border-box", background:"#fff", border:"1px solid #ccc", borderRadius:2, padding:"13px 14px", color:"#000", fontSize:"15px", fontFamily:SANS, outline:"none", marginBottom:"10px" },
+    btn:  { width:"100%", background:G, color:"#000", border:"none", borderRadius:2, padding:"16px", fontSize:"11px", fontWeight:800, letterSpacing:"2.5px", cursor:"pointer", marginTop:"20px", fontFamily:SANS },
+    btnX: { width:"100%", background:"#141414", color:"#2a2a2a", border:"none", borderRadius:2, padding:"16px", fontSize:"11px", fontWeight:800, letterSpacing:"2.5px", cursor:"not-allowed", marginTop:"20px", fontFamily:SANS },
+    sm:   { background:G, color:"#000", border:"none", borderRadius:2, padding:"11px 20px", fontSize:"10px", fontWeight:800, letterSpacing:"1.5px", cursor:"pointer", fontFamily:SANS },
+    gh:   { background:"none", border:`1px solid ${BR}`, color:MT, borderRadius:2, padding:"11px 18px", fontSize:"10px", letterSpacing:"1.5px", cursor:"pointer", fontFamily:SANS },
+    bk:   { background:"none", border:"none", color:"#2a2a2a", fontSize:"12px", cursor:"pointer", padding:0, marginTop:12, display:"block", fontFamily:SANS },
+    err:  { background:"#1a0000", border:"1px solid #440000", borderRadius:2, padding:"10px 14px", color:"#ff5555", fontSize:"13px", marginTop:10, fontFamily:SANS },
   };
 
-  // ── OVERLAYS ──
   if (showTele) return <Teleprompter script={teleScript} onClose={() => setShowTele(false)} />;
 
   if (milestone) return (
     <div style={sh.page}>
-      <div style={{ ...sh.card, textAlign: "center" }}>
-        <div style={{ padding: "52px 30px" }}>
-          <div style={{ fontSize: "64px", marginBottom: 18 }}>{milestone.emoji}</div>
-          <div style={{ fontSize: "9px", color: G, letterSpacing: "3px", marginBottom: 12, fontFamily: SANS }}>NEW RANK UNLOCKED</div>
-          <div style={{ fontSize: "28px", fontWeight: 600, color: "#fff", fontFamily: SANS, marginBottom: 16 }}>{milestone.title}</div>
+      <div style={{ ...sh.card, textAlign:"center" }}>
+        <div style={{ padding:"52px 30px" }}>
+          <div style={{ fontSize:"64px", marginBottom:18 }}>{milestone.emoji}</div>
+          <div style={{ fontSize:"9px", color:G, letterSpacing:"3px", marginBottom:12, fontFamily:SANS }}>NEW RANK UNLOCKED</div>
+          <div style={{ fontSize:"28px", fontWeight:600, color:"#fff", fontFamily:SANS, marginBottom:16 }}>{milestone.title}</div>
           <p style={sh.para}>You have earned this title through consistent action. Persistence turns dust to gold.</p>
           <button style={sh.btn} onClick={() => setMilestone(null)}>KEEP GOING →</button>
         </div>
@@ -567,24 +687,20 @@ export default function App() {
   );
 
   if (screen === "loading") return (
-    <div style={sh.page}><div style={{ color: G, fontSize: "10px", letterSpacing: "3px", fontFamily: SANS }}>LOADING...</div></div>
+    <div style={sh.page}><div style={{ color:G, fontSize:"10px", letterSpacing:"3px", fontFamily:SANS }}>LOADING...</div></div>
   );
 
-  // ── WELCOME ──
   if (screen === "welcome") return (
     <div style={sh.page}>
       <div style={sh.card}>
-        <div style={sh.hdr}>
-          <LogoImg height={36} />
-          <div style={sh.dot} />
-        </div>
+        <div style={sh.hdr}><LogoImg height={36} /><div style={sh.dot} /></div>
         <div style={sh.body}>
           <span style={sh.tag}>FREE · 12 QUESTIONS · 30 MINUTES</span>
           <h1 style={sh.h1}>Get your First 10 Clients in 30 Days.</h1>
-          <p style={{ ...sh.para, fontSize: "18px", color: "#888", fontWeight: 300, marginBottom: 8 }}>Your 1-year marketing plan created instantly.</p>
-          <p style={{ ...sh.para, fontSize: "14px", marginBottom: 0 }}>Answer 12 questions. LEDE finds your USP, builds your weekly content queue, and becomes the teleprompter you film with every day.</p>
+          <p style={{ ...sh.para, fontSize:"18px", color:"#888", fontWeight:300, marginBottom:8 }}>Your 1-year marketing plan created instantly.</p>
+          <p style={{ ...sh.para, fontSize:"14px", marginBottom:0 }}>Answer 12 questions. LEDE finds your USP, builds your weekly content queue, and becomes the teleprompter you film with every day.</p>
           <button style={sh.btn} onClick={() => setScreen("questions")}>FIND MY USP — FREE →</button>
-          <p style={{ color: "#1e1e1e", fontSize: "12px", marginTop: 16, textAlign: "center", fontFamily: SANS, fontStyle: "italic" }}>
+          <p style={{ color:"#1e1e1e", fontSize:"12px", marginTop:16, textAlign:"center", fontFamily:SANS, fontStyle:"italic" }}>
             Stone Ridge School: 300 → 1,300 students · Primtouch: $0 → $10K/month
           </p>
         </div>
@@ -592,76 +708,54 @@ export default function App() {
     </div>
   );
 
-  // ── QUESTIONS ──
   if (screen === "questions") {
     const q  = QUESTIONS[step];
     const ok = !!answers[q.id]?.trim();
     return (
       <div style={sh.page}>
         <div style={sh.card}>
-          <div style={sh.hdr}>
-            <LogoImg height={36} />
-            <div style={sh.dot} />
-          </div>
+          <div style={sh.hdr}><LogoImg height={36} /><div style={sh.dot} /></div>
           <div style={sh.body}>
-            <div style={sh.prog}>{QUESTIONS.map((_, i) => <div key={i} style={sh.bar(i <= step)} />)}</div>
+            <div style={sh.prog}>{QUESTIONS.map((_,i) => <div key={i} style={sh.bar(i<=step)} />)}</div>
             <span style={sh.tag}>{q.label}</span>
             <h2 style={sh.h2}>{q.q}</h2>
-            <textarea style={sh.ta} placeholder={q.hint} value={answers[q.id] || ""}
-              onChange={e => setAnswers(p => ({ ...p, [q.id]: e.target.value }))}
-              onFocus={e => (e.target.style.borderColor = G)} onBlur={e => (e.target.style.borderColor = "#ccc")} />
-            <button style={ok ? sh.btn : sh.btnX} disabled={!ok}
-              onClick={() => { if (!ok) return; if (step < QUESTIONS.length - 1) setStep(s => s + 1); else setScreen("contact"); }}>
-              {step === QUESTIONS.length - 1 ? "ALMOST DONE →" : "NEXT →"}
+            <textarea style={sh.ta} placeholder={q.hint} value={answers[q.id]||""}
+              onChange={e => setAnswers(p => ({...p, [q.id]:e.target.value}))}
+              onFocus={e => (e.target.style.borderColor=G)} onBlur={e => (e.target.style.borderColor="#ccc")} />
+            <button style={ok?sh.btn:sh.btnX} disabled={!ok}
+              onClick={() => { if(!ok) return; if(step<QUESTIONS.length-1) setStep(s=>s+1); else setScreen("contact"); }}>
+              {step===QUESTIONS.length-1 ? "ALMOST DONE →" : "NEXT →"}
             </button>
-            <button style={sh.bk} onClick={() => { if (step > 0) setStep(s => s - 1); else setScreen("welcome"); }}>← Back</button>
+            <button style={sh.bk} onClick={() => { if(step>0) setStep(s=>s-1); else setScreen("welcome"); }}>← Back</button>
           </div>
         </div>
       </div>
     );
   }
 
-  // ── CONTACT ──
   if (screen === "contact") {
-    const waFilled = contact.whatsapp && contact.whatsapp !== "+256" && contact.whatsapp.replace(/\D/g, "").length > 6;
+    const waFilled = contact.whatsapp && contact.whatsapp !== "+256" && contact.whatsapp.replace(/\D/g,"").length > 6;
     const ok = contact.name.trim() && contact.email.trim() && waFilled && !loading;
-
     return (
       <div style={sh.page}>
         <div style={sh.card}>
-          <div style={sh.hdr}>
-            <LogoImg height={36} />
-            <div style={sh.dot} />
-          </div>
-          <div style={{ ...sh.body, paddingBottom: loading ? 0 : 40 }}>
-            {loading ? (
-              <DogLoader />
-            ) : (
+          <div style={sh.hdr}><LogoImg height={36} /><div style={sh.dot} /></div>
+          <div style={{ ...sh.body, paddingBottom:loading?0:40 }}>
+            {loading ? <DogLoader /> : (
               <>
                 <span style={sh.tag}>ONE LAST STEP</span>
                 <h2 style={sh.h2}>Where do we reach you?</h2>
-                <p style={{ ...sh.para, marginBottom: 22 }}>
-                  Your strategy appears instantly. Daily story reminders go to your WhatsApp every morning.
-                </p>
+                <p style={{ ...sh.para, marginBottom:22 }}>Your strategy appears instantly. Daily story reminders go to your WhatsApp every morning.</p>
                 <input style={sh.inp} placeholder="Your full name" value={contact.name}
-                  onChange={e => setContact(p => ({ ...p, name: e.target.value }))}
-                  onFocus={e => (e.target.style.borderColor = G)} onBlur={e => (e.target.style.borderColor = "#ccc")} />
+                  onChange={e => setContact(p => ({...p, name:e.target.value}))}
+                  onFocus={e => (e.target.style.borderColor=G)} onBlur={e => (e.target.style.borderColor="#ccc")} />
                 <input style={sh.inp} placeholder="Email address" type="email" value={contact.email}
-                  onChange={e => setContact(p => ({ ...p, email: e.target.value }))}
-                  onFocus={e => (e.target.style.borderColor = G)} onBlur={e => (e.target.style.borderColor = "#ccc")} />
-                <PhoneInput
-                  value={contact.whatsapp}
-                  onChange={val => setContact(p => ({ ...p, whatsapp: val }))}
-                />
-                {!waFilled && (
-                  <p style={{ color: "#ff5555", fontSize: "11px", marginBottom: 10, fontFamily: SANS }}>
-                    WhatsApp is required — this is where your daily prompts arrive.
-                  </p>
-                )}
+                  onChange={e => setContact(p => ({...p, email:e.target.value}))}
+                  onFocus={e => (e.target.style.borderColor=G)} onBlur={e => (e.target.style.borderColor="#ccc")} />
+                <PhoneInput value={contact.whatsapp} onChange={val => setContact(p => ({...p, whatsapp:val}))} />
+                {!waFilled && <p style={{ color:"#ff5555", fontSize:"11px", marginBottom:10, fontFamily:SANS }}>WhatsApp is required — this is where your daily prompts arrive.</p>}
                 {error && <div style={sh.err}>{error}</div>}
-                <button style={ok ? sh.btn : sh.btnX} disabled={!ok} onClick={handleOnboard}>
-                  BUILD MY CONTENT ENGINE →
-                </button>
+                <button style={ok?sh.btn:sh.btnX} disabled={!ok} onClick={handleOnboard}>BUILD MY CONTENT ENGINE →</button>
                 <button style={sh.bk} onClick={() => setScreen("questions")}>← Back to questions</button>
               </>
             )}
@@ -671,160 +765,115 @@ export default function App() {
     );
   }
 
-  // ── DASHBOARD ──
   if (screen === "dashboard") {
     const rank    = getRank(streak.count);
     const next    = getNextRank(streak.count);
     const posted  = streak.lastPosted === todayStr();
     const dayItem = weekContent?.[activeDay];
-    const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const DAY_LABELS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 
     return (
-      <div style={{ minHeight: "100vh", background: BK, fontFamily: SANS, paddingBottom: 60 }}>
-
-        {/* HEADER */}
-        <div style={{ background: CD, borderBottom: `1px solid ${BR}`, padding: "12px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, zIndex: 20 }}>
+      <div style={{ minHeight:"100vh", background:BK, fontFamily:SANS, paddingBottom:60 }}>
+        <div style={{ background:CD, borderBottom:`1px solid ${BR}`, padding:"12px 20px", display:"flex", alignItems:"center", justifyContent:"space-between", position:"sticky", top:0, zIndex:20 }}>
           <LogoImg height={36} />
-          <button onClick={() => setTab("profile")} style={{ display: "flex", alignItems: "center", gap: 8, background: "#0a0a0a", border: `1px solid ${BR}`, borderRadius: 2, padding: "7px 12px", cursor: "pointer" }}>
-            <span style={{ fontSize: 16 }}>{rank.emoji}</span>
-            <div style={{ textAlign: "left" }}>
-              <div style={{ fontSize: "9px", color: G, letterSpacing: "1px", fontWeight: 700, fontFamily: SANS }}>{rank.title}</div>
-              <div style={{ fontSize: "9px", color: MT, fontFamily: SANS }}>🔥 {streak.count} day{streak.count !== 1 ? "s" : ""}</div>
+          <button onClick={() => setTab("profile")} style={{ display:"flex", alignItems:"center", gap:8, background:"#0a0a0a", border:`1px solid ${BR}`, borderRadius:2, padding:"7px 12px", cursor:"pointer" }}>
+            <span style={{ fontSize:16 }}>{rank.emoji}</span>
+            <div style={{ textAlign:"left" }}>
+              <div style={{ fontSize:"9px", color:G, letterSpacing:"1px", fontWeight:700, fontFamily:SANS }}>{rank.title}</div>
+              <div style={{ fontSize:"9px", color:MT, fontFamily:SANS }}>🔥 {streak.count} day{streak.count!==1?"s":""}</div>
             </div>
           </button>
         </div>
 
-        {/* NOT POSTED BANNER */}
         {!posted && (
-          <div style={{ background: "#0c0c00", borderBottom: "1px solid #252500", padding: "10px 20px" }}>
-            <p style={{ color: "#bbbb00", fontSize: "13px", margin: 0, fontFamily: SANS, fontStyle: "italic" }}>
-              You have not posted today. Open a day below and film something.
-            </p>
+          <div style={{ background:"#0c0c00", borderBottom:"1px solid #252500", padding:"10px 20px" }}>
+            <p style={{ color:"#bbbb00", fontSize:"13px", margin:0, fontFamily:SANS, fontStyle:"italic" }}>You have not posted today. Open a day below and film something.</p>
           </div>
         )}
 
-        {/* TABS */}
-        <div style={{ display: "flex", borderBottom: `1px solid ${BR}`, background: CD, overflowX: "auto", padding: "0 16px" }}>
-          {[["week","THIS WEEK"],["story","STORY PROMPT"],["profile","MY RANK"]].map(([id, lbl]) => (
-            <button key={id} onClick={() => setTab(id)} style={{ background: "none", border: "none", cursor: "pointer", padding: "13px 16px", fontSize: "9px", fontWeight: 700, letterSpacing: "2px", color: tab === id ? G : "#333", borderBottom: tab === id ? `2px solid ${G}` : "2px solid transparent", whiteSpace: "nowrap", fontFamily: SANS }}>
+        <div style={{ display:"flex", borderBottom:`1px solid ${BR}`, background:CD, overflowX:"auto", padding:"0 16px" }}>
+          {[["week","THIS WEEK"],["story","STORY PROMPT"],["profile","MY RANK"]].map(([id,lbl]) => (
+            <button key={id} onClick={() => setTab(id)} style={{ background:"none", border:"none", cursor:"pointer", padding:"13px 16px", fontSize:"9px", fontWeight:700, letterSpacing:"2px", color:tab===id?G:"#333", borderBottom:tab===id?`2px solid ${G}`:"2px solid transparent", whiteSpace:"nowrap", fontFamily:SANS }}>
               {lbl}
             </button>
           ))}
         </div>
 
-        {/* ── WEEK TAB ── */}
         {tab === "week" && (
-          <div style={{ padding: "20px 16px" }}>
-            {loadingWeek ? (
-              <DogLoader message="Building your week of Hooksmith content…" />
-            ) : weekContent ? (
+          <div style={{ padding:"20px 16px" }}>
+            {loadingWeek ? <DogLoader message="Building your week of Hooksmith content…" /> : weekContent ? (
               <>
-                <div style={{ display: "flex", gap: 6, marginBottom: 18, overflowX: "auto", paddingBottom: 4 }}>
-                  {weekContent.map((d, i) => (
+                <div style={{ display:"flex", gap:6, marginBottom:18, overflowX:"auto", paddingBottom:4 }}>
+                  {weekContent.map((d,i) => (
                     <button key={i} onClick={() => setActiveDay(i)} style={{
-                      background: activeDay === i ? G : "#0a0a0a",
-                      color: activeDay === i ? "#000" : d.posted ? G : MT,
-                      border: `1px solid ${activeDay === i ? G : d.posted ? "#1a3a1a" : BR}`,
-                      borderRadius: 2, padding: "8px 12px", fontSize: "10px", fontWeight: 700,
-                      letterSpacing: "1px", cursor: "pointer", minWidth: 48, position: "relative", fontFamily: SANS,
+                      background:activeDay===i?G:"#0a0a0a", color:activeDay===i?"#000":d.posted?G:MT,
+                      border:`1px solid ${activeDay===i?G:d.posted?"#1a3a1a":BR}`,
+                      borderRadius:2, padding:"8px 12px", fontSize:"10px", fontWeight:700,
+                      letterSpacing:"1px", cursor:"pointer", minWidth:48, position:"relative", fontFamily:SANS,
                     }}>
-                      {d.posted && <span style={{ position: "absolute", top: -5, right: -5, fontSize: "11px" }}>✓</span>}
+                      {d.posted && <span style={{ position:"absolute", top:-5, right:-5, fontSize:"11px" }}>✓</span>}
                       {DAY_LABELS[i]}
                     </button>
                   ))}
                 </div>
-
                 {dayItem && (
-                  <div style={{ background: "#0a0a0a", border: `1px solid ${BR}`, borderRadius: 4, overflow: "hidden" }}>
-                    <div style={{ padding: "14px 18px", borderBottom: `1px solid ${BR}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div style={{ background:"#0a0a0a", border:`1px solid ${BR}`, borderRadius:4, overflow:"hidden" }}>
+                    <div style={{ padding:"14px 18px", borderBottom:`1px solid ${BR}`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
                       <div>
-                        <div style={{ fontSize: "9px", color: G, letterSpacing: "2px", marginBottom: 3, fontFamily: SANS }}>
-                          {(dayItem.story_type || "").toUpperCase()} · {(dayItem.platform || "").toUpperCase()}
-                        </div>
-                        <div style={{ fontSize: "17px", color: "#fff", fontWeight: 600, fontFamily: SANS }}>{dayItem.day}</div>
+                        <div style={{ fontSize:"9px", color:G, letterSpacing:"2px", marginBottom:3, fontFamily:SANS }}>{(dayItem.story_type||"").toUpperCase()} · {(dayItem.platform||"").toUpperCase()}</div>
+                        <div style={{ fontSize:"17px", color:"#fff", fontWeight:600, fontFamily:SANS }}>{dayItem.day}</div>
                       </div>
-                      {dayItem.posted && <span style={{ fontSize: "10px", color: G, letterSpacing: "1px", fontFamily: SANS }}>✓ POSTED</span>}
+                      {dayItem.posted && <span style={{ fontSize:"10px", color:G, letterSpacing:"1px", fontFamily:SANS }}>✓ POSTED</span>}
                     </div>
-
-                    <div style={{ padding: "18px 18px 0" }}>
-                      <div style={{ fontSize: "8px", color: MT, letterSpacing: "2px", marginBottom: 7, fontFamily: SANS }}>HOOK</div>
-                      <p style={{ color: "#fff", fontSize: "17px", fontFamily: SANS, lineHeight: 1.6, fontStyle: "italic", marginBottom: 18 }}>
-                        "{dayItem.hook}"
-                      </p>
+                    <div style={{ padding:"18px 18px 0" }}>
+                      <div style={{ fontSize:"8px", color:MT, letterSpacing:"2px", marginBottom:7, fontFamily:SANS }}>HOOK</div>
+                      <p style={{ color:"#fff", fontSize:"17px", fontFamily:SANS, lineHeight:1.6, fontStyle:"italic", marginBottom:18 }}>"{dayItem.hook}"</p>
                     </div>
-
-                    <div style={{ padding: "0 18px" }}>
-                      <div style={{ fontSize: "8px", color: MT, letterSpacing: "2px", marginBottom: 7, fontFamily: SANS }}>SCRIPT PREVIEW</div>
-                      <p style={{ color: "#555", fontSize: "14px", fontFamily: SANS, lineHeight: 1.75, marginBottom: 18 }}>
-                        {(dayItem.script || "").substring(0, 220)}…
-                      </p>
+                    <div style={{ padding:"0 18px" }}>
+                      <div style={{ fontSize:"8px", color:MT, letterSpacing:"2px", marginBottom:7, fontFamily:SANS }}>SCRIPT PREVIEW</div>
+                      <p style={{ color:"#555", fontSize:"14px", fontFamily:SANS, lineHeight:1.75, marginBottom:18 }}>{(dayItem.script||"").substring(0,220)}…</p>
                     </div>
-
-                    <div style={{ padding: "0 18px" }}>
-                      <div style={{ fontSize: "8px", color: MT, letterSpacing: "2px", marginBottom: 7, fontFamily: SANS }}>CAPTION</div>
-                      <p style={{ color: "#555", fontSize: "14px", fontFamily: SANS, lineHeight: 1.75, marginBottom: 18 }}>
-                        {dayItem.caption}
-                      </p>
+                    <div style={{ padding:"0 18px" }}>
+                      <div style={{ fontSize:"8px", color:MT, letterSpacing:"2px", marginBottom:7, fontFamily:SANS }}>CAPTION</div>
+                      <p style={{ color:"#555", fontSize:"14px", fontFamily:SANS, lineHeight:1.75, marginBottom:18 }}>{dayItem.caption}</p>
                     </div>
-
-                    <div style={{ padding: "14px 18px", borderTop: `1px solid ${BR}`, display: "flex", gap: 8, flexWrap: "wrap" }}>
-                      <button style={sh.sm} onClick={() => { setTeleScript(dayItem.script || dayItem.hook); setShowTele(true); }}>
-                        🎙️ FILM WITH TELEPROMPTER
-                      </button>
-                      {!dayItem.posted && (
-                        <button style={sh.gh} onClick={() => handlePosted(activeDay)}>✓ MARK AS POSTED</button>
-                      )}
+                    <div style={{ padding:"14px 18px", borderTop:`1px solid ${BR}`, display:"flex", gap:8, flexWrap:"wrap" }}>
+                      <button style={sh.sm} onClick={() => { setTeleScript(dayItem.script||dayItem.hook); setShowTele(true); }}>🎙️ FILM WITH TELEPROMPTER</button>
+                      {!dayItem.posted && <button style={sh.gh} onClick={() => handlePosted(activeDay)}>✓ MARK AS POSTED</button>}
                     </div>
                   </div>
                 )}
-
-                <button style={{ ...sh.gh, marginTop: 14, display: "block", width: "100%", textAlign: "center" }}
-                  onClick={() => genWeek(answers, contact.name)}>
-                  ↺ REGENERATE THIS WEEK
-                </button>
+                <button style={{ ...sh.gh, marginTop:14, display:"block", width:"100%", textAlign:"center" }} onClick={() => genWeek(answers, contact.name)}>↺ REGENERATE THIS WEEK</button>
               </>
             ) : (
-              <div style={{ textAlign: "center", padding: "60px 16px" }}>
-                <button style={{ ...sh.btn, marginTop: 0 }} onClick={() => genWeek(answers, contact.name)}>
-                  GENERATE THIS WEEK →
-                </button>
+              <div style={{ textAlign:"center", padding:"60px 16px" }}>
+                <button style={{ ...sh.btn, marginTop:0 }} onClick={() => genWeek(answers, contact.name)}>GENERATE THIS WEEK →</button>
               </div>
             )}
           </div>
         )}
 
-        {/* ── STORY TAB ── */}
         {tab === "story" && (
-          <div style={{ padding: "20px 16px" }}>
-            <div style={{ fontSize: "8px", color: MT, letterSpacing: "2px", marginBottom: 6, fontFamily: SANS }}>ON-DEMAND · AI GENERATED</div>
-            <h2 style={{ ...sh.h2, marginBottom: 8 }}>Today's Story</h2>
-            <p style={{ color: MT, fontSize: "14px", lineHeight: 1.75, marginBottom: 22, fontFamily: SANS }}>
-              A fresh story angle built from your answers. Use for Instagram Stories, WhatsApp Status, or a 60-second reel.
-            </p>
-            {!storyPrompt && !loadingStory && (
-              <button style={{ ...sh.btn, marginTop: 0 }} onClick={genStory}>GENERATE TODAY'S STORY →</button>
-            )}
+          <div style={{ padding:"20px 16px" }}>
+            <div style={{ fontSize:"8px", color:MT, letterSpacing:"2px", marginBottom:6, fontFamily:SANS }}>ON-DEMAND · AI GENERATED</div>
+            <h2 style={{ ...sh.h2, marginBottom:8 }}>Today's Story</h2>
+            <p style={{ color:MT, fontSize:"14px", lineHeight:1.75, marginBottom:22, fontFamily:SANS }}>A fresh story angle built from your answers. Use for Instagram Stories, WhatsApp Status, or a 60-second reel.</p>
+            {!storyPrompt && !loadingStory && <button style={{ ...sh.btn, marginTop:0 }} onClick={genStory}>GENERATE TODAY'S STORY →</button>}
             {loadingStory && <DogLoader message="Sniffing out today's story angle…" />}
             {storyPrompt && !loadingStory && (
-              <div style={{ background: "#0a0a0a", border: `1px solid ${BR}`, borderRadius: 4, overflow: "hidden" }}>
-                <div style={{ padding: "18px", borderBottom: `1px solid ${BR}` }}>
-                  <div style={{ fontSize: "9px", color: G, letterSpacing: "2px", marginBottom: 8, fontFamily: SANS }}>
-                    {(storyPrompt.story_type || "").toUpperCase()}
-                  </div>
-                  <p style={{ color: "#fff", fontSize: "19px", fontFamily: SANS, fontStyle: "italic", lineHeight: 1.55 }}>
-                    "{storyPrompt.hook}"
-                  </p>
+              <div style={{ background:"#0a0a0a", border:`1px solid ${BR}`, borderRadius:4, overflow:"hidden" }}>
+                <div style={{ padding:"18px", borderBottom:`1px solid ${BR}` }}>
+                  <div style={{ fontSize:"9px", color:G, letterSpacing:"2px", marginBottom:8, fontFamily:SANS }}>{(storyPrompt.story_type||"").toUpperCase()}</div>
+                  <p style={{ color:"#fff", fontSize:"19px", fontFamily:SANS, fontStyle:"italic", lineHeight:1.55 }}>"{storyPrompt.hook}"</p>
                 </div>
-                <div style={{ padding: "18px" }}>
-                  <div style={{ fontSize: "8px", color: MT, letterSpacing: "2px", marginBottom: 7, fontFamily: SANS }}>STORY DIRECTION</div>
-                  <p style={{ color: "#aaa", fontSize: "14px", fontFamily: SANS, lineHeight: 1.75, marginBottom: 18 }}>{storyPrompt.prompt}</p>
-                  <div style={{ fontSize: "8px", color: MT, letterSpacing: "2px", marginBottom: 7, fontFamily: SANS }}>TELEPROMPTER SCRIPT</div>
-                  <p style={{ color: "#555", fontSize: "14px", fontFamily: SANS, lineHeight: 1.75 }}>
-                    {(storyPrompt.script || "").substring(0, 300)}…
-                  </p>
+                <div style={{ padding:"18px" }}>
+                  <div style={{ fontSize:"8px", color:MT, letterSpacing:"2px", marginBottom:7, fontFamily:SANS }}>STORY DIRECTION</div>
+                  <p style={{ color:"#aaa", fontSize:"14px", fontFamily:SANS, lineHeight:1.75, marginBottom:18 }}>{storyPrompt.prompt}</p>
+                  <div style={{ fontSize:"8px", color:MT, letterSpacing:"2px", marginBottom:7, fontFamily:SANS }}>TELEPROMPTER SCRIPT</div>
+                  <p style={{ color:"#555", fontSize:"14px", fontFamily:SANS, lineHeight:1.75 }}>{(storyPrompt.script||"").substring(0,300)}…</p>
                 </div>
-                <div style={{ padding: "14px 18px", borderTop: `1px solid ${BR}`, display: "flex", gap: 8, flexWrap: "wrap" }}>
-                  <button style={sh.sm} onClick={() => { setTeleScript(storyPrompt.script || storyPrompt.hook); setShowTele(true); }}>🎙️ FILM THIS</button>
+                <div style={{ padding:"14px 18px", borderTop:`1px solid ${BR}`, display:"flex", gap:8, flexWrap:"wrap" }}>
+                  <button style={sh.sm} onClick={() => { setTeleScript(storyPrompt.script||storyPrompt.hook); setShowTele(true); }}>🎙️ FILM THIS</button>
                   <button style={sh.gh} onClick={genStory}>↺ NEW PROMPT</button>
                   {!posted && <button style={sh.gh} onClick={() => handlePosted(activeDay)}>✓ MARK AS POSTED</button>}
                 </div>
@@ -833,51 +882,48 @@ export default function App() {
           </div>
         )}
 
-        {/* ── PROFILE TAB ── */}
         {tab === "profile" && (
-          <div style={{ padding: "20px 16px" }}>
-            <div style={{ background: "#0a0a0a", border: `1px solid ${BR}`, borderRadius: 4, padding: "34px 20px", textAlign: "center", marginBottom: 14 }}>
-              <div style={{ fontSize: "60px", marginBottom: 14 }}>{rank.emoji}</div>
-              <div style={{ fontSize: "9px", color: G, letterSpacing: "3px", marginBottom: 8, fontFamily: SANS }}>YOUR CURRENT RANK</div>
-              <div style={{ fontSize: "26px", fontWeight: 600, color: "#fff", fontFamily: SANS, marginBottom: 22 }}>{rank.title}</div>
-              <div style={{ display: "flex", gap: 12, justifyContent: "center" }}>
-                {[["🔥", streak.count, "STREAK"], ["⭐", streak.best || 0, "BEST"], ["📝", streak.total || 0, "TOTAL"]].map(([e, v, l]) => (
-                  <div key={l} style={{ textAlign: "center", background: "#111", border: `1px solid ${BR}`, borderRadius: 2, padding: "14px 16px", flex: 1 }}>
-                    <div style={{ fontSize: 22, marginBottom: 4 }}>{e}</div>
-                    <div style={{ fontSize: "22px", fontWeight: 600, color: "#fff", fontFamily: SANS }}>{v}</div>
-                    <div style={{ fontSize: "8px", color: MT, letterSpacing: "1.5px", fontFamily: SANS }}>{l}</div>
+          <div style={{ padding:"20px 16px" }}>
+            <div style={{ background:"#0a0a0a", border:`1px solid ${BR}`, borderRadius:4, padding:"34px 20px", textAlign:"center", marginBottom:14 }}>
+              <div style={{ fontSize:"60px", marginBottom:14 }}>{rank.emoji}</div>
+              <div style={{ fontSize:"9px", color:G, letterSpacing:"3px", marginBottom:8, fontFamily:SANS }}>YOUR CURRENT RANK</div>
+              <div style={{ fontSize:"26px", fontWeight:600, color:"#fff", fontFamily:SANS, marginBottom:22 }}>{rank.title}</div>
+              <div style={{ display:"flex", gap:12, justifyContent:"center" }}>
+                {[["🔥",streak.count,"STREAK"],["⭐",streak.best||0,"BEST"],["📝",streak.total||0,"TOTAL"]].map(([e,v,l]) => (
+                  <div key={l} style={{ textAlign:"center", background:"#111", border:`1px solid ${BR}`, borderRadius:2, padding:"14px 16px", flex:1 }}>
+                    <div style={{ fontSize:22, marginBottom:4 }}>{e}</div>
+                    <div style={{ fontSize:"22px", fontWeight:600, color:"#fff", fontFamily:SANS }}>{v}</div>
+                    <div style={{ fontSize:"8px", color:MT, letterSpacing:"1.5px", fontFamily:SANS }}>{l}</div>
                   </div>
                 ))}
               </div>
               {next && (
-                <div style={{ marginTop: 22, textAlign: "left" }}>
-                  <div style={{ fontSize: "11px", color: MT, marginBottom: 6, fontFamily: SANS }}>
-                    {next.days - streak.count} more day{next.days - streak.count !== 1 ? "s" : ""} to reach <span style={{ color: "#ccc" }}>{next.title} {next.emoji}</span>
+                <div style={{ marginTop:22, textAlign:"left" }}>
+                  <div style={{ fontSize:"11px", color:MT, marginBottom:6, fontFamily:SANS }}>
+                    {next.days-streak.count} more day{next.days-streak.count!==1?"s":""} to reach <span style={{ color:"#ccc" }}>{next.title} {next.emoji}</span>
                   </div>
-                  <div style={{ background: "#1a1a1a", borderRadius: 2, height: 4 }}>
-                    <div style={{ background: G, height: "100%", borderRadius: 2, width: `${Math.min(100, Math.round(((streak.count - rank.days) / Math.max(1, next.days - rank.days)) * 100))}%` }} />
+                  <div style={{ background:"#1a1a1a", borderRadius:2, height:4 }}>
+                    <div style={{ background:G, height:"100%", borderRadius:2, width:`${Math.min(100,Math.round(((streak.count-rank.days)/Math.max(1,next.days-rank.days))*100))}%` }} />
                   </div>
                 </div>
               )}
             </div>
-
-            <div style={{ fontSize: "9px", color: MT, letterSpacing: "2px", marginBottom: 10, fontFamily: SANS }}>ALL RANKS</div>
+            <div style={{ fontSize:"9px", color:MT, letterSpacing:"2px", marginBottom:10, fontFamily:SANS }}>ALL RANKS</div>
             {RANKS.map(r => {
               const earned = streak.count >= r.days;
               return (
-                <div key={r.title} style={{ display: "flex", alignItems: "center", gap: 12, padding: "13px 14px", background: "#0a0a0a", border: `1px solid ${earned ? "#1a3a1a" : BR}`, borderRadius: 2, marginBottom: 5, opacity: earned ? 1 : 0.35 }}>
-                  <span style={{ fontSize: 20, minWidth: 26 }}>{r.emoji}</span>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: "14px", color: earned ? "#fff" : MT, fontWeight: 500, fontFamily: SANS }}>{r.title}</div>
-                    <div style={{ fontSize: "10px", color: MT, fontFamily: SANS }}>{r.days === 0 ? "Starting rank" : `Post for ${r.days} consecutive days`}</div>
+                <div key={r.title} style={{ display:"flex", alignItems:"center", gap:12, padding:"13px 14px", background:"#0a0a0a", border:`1px solid ${earned?"#1a3a1a":BR}`, borderRadius:2, marginBottom:5, opacity:earned?1:0.35 }}>
+                  <span style={{ fontSize:20, minWidth:26 }}>{r.emoji}</span>
+                  <div style={{ flex:1 }}>
+                    <div style={{ fontSize:"14px", color:earned?"#fff":MT, fontWeight:500, fontFamily:SANS }}>{r.title}</div>
+                    <div style={{ fontSize:"10px", color:MT, fontFamily:SANS }}>{r.days===0?"Starting rank":`Post for ${r.days} consecutive days`}</div>
                   </div>
-                  {earned && <span style={{ color: G, fontSize: "12px" }}>✓</span>}
+                  {earned && <span style={{ color:G, fontSize:"12px" }}>✓</span>}
                 </div>
               );
             })}
-
-            <button style={{ ...sh.gh, marginTop: 18, display: "block", width: "100%", textAlign: "center" }}
-              onClick={() => { if (window.confirm("This clears all your data. Are you sure?")) { localStorage.clear(); window.location.reload(); } }}>
+            <button style={{ ...sh.gh, marginTop:18, display:"block", width:"100%", textAlign:"center" }}
+              onClick={() => { if(window.confirm("This clears all your data. Are you sure?")) { localStorage.clear(); window.location.reload(); } }}>
               RESTART FROM SCRATCH
             </button>
           </div>
