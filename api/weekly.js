@@ -36,15 +36,18 @@ WRITING RULES — enforce every single one:
 - Lead with emotion, never statistics or dates
 - Concrete numbers beat vague claims
 - All content based entirely on the business info provided
+- Use the business name naturally throughout — not "the business" or "I"
 
-PLATFORM ROTATION — follow this for the 7 days:
-Monday: Facebook video (60–90 sec script)
-Tuesday: WhatsApp Status or Instagram Story (30 sec)
-Wednesday: Facebook carousel or long caption post
-Thursday: TikTok or Instagram Reel (45 sec script)
-Friday: Facebook video (testimonial or transformation)
-Saturday: WhatsApp broadcast or Instagram Story (30 sec)
-Sunday: Reflection post — longer, personal, origin-based
+STORY TYPE ASSIGNMENT — follow this exactly, no variation:
+Monday:    Origin Story      — Facebook video (60–90 sec script)
+Tuesday:   Enemy Story       — WhatsApp Status or Instagram Story (30 sec)
+Wednesday: Transformation Story — Facebook carousel or long caption post
+Thursday:  Teaching Story    — TikTok or Instagram Reel (45 sec script)
+Friday:    Vision Story      — Facebook video (60–90 sec script)
+Saturday:  Deep Mirror       — WhatsApp broadcast or Instagram Story (30 sec) — make audience say "That is me"
+Sunday:    Origin Story remix — longer personal reflection post — different angle from Monday, more vulnerable
+
+Each day must feel architecturally different from every other day. Monday is not Thursday. Sunday is not Monday. Different emotional arc, different narrative structure, different opening energy.
 
 Return ONLY valid JSON in this exact structure:
 {
@@ -78,9 +81,13 @@ export default async function handler(req, res) {
   const { answers, name } = req.body || {};
   if (!answers || !name) return res.status(400).json({ error: "Missing answers or name" });
 
-  const prompt = `Generate a full 7-day Hooksmith content week for ${name}.
+  const businessName = answers.business_name || name + "'s Business";
+
+  const prompt = `Generate a full 7-day Hooksmith content week for ${name}, owner of ${businessName}.
 
 BUSINESS PROFILE:
+Business name: ${businessName}
+Owner name: ${name}
 What they do: ${answers.what}
 Ideal customer: ${answers.who}
 Why they started: ${answers.why}
@@ -94,7 +101,11 @@ Proof they have: ${answers.proof}
 Where their customer is online: ${answers.platforms}
 12-month goal: ${answers.goal}
 
-Build 7 days of content. Each day uses a different story type from the 5 Hooksmith story types, with a hook built on the 5C framework. The script must sound like a real human speaking — not a written paragraph being read. Keep every piece specific to this business. Never use generic marketing language.
+Follow the STORY TYPE ASSIGNMENT exactly as specified in your instructions. Monday gets Origin Story. Tuesday gets Enemy Story. Wednesday gets Transformation Story. Thursday gets Teaching Story. Friday gets Vision Story. Saturday gets Deep Mirror. Sunday gets Origin Story from a different, more vulnerable angle.
+
+Each day must feel completely different from every other day — different emotional architecture, different opening energy, different narrative structure. A reader who sees Monday and Thursday should feel they are in two completely different stories. Use the business name "${businessName}" naturally throughout. Never say "I started this business" — say "I started ${businessName}" or use the business name directly.
+
+The script must sound like a real human speaking aloud — not a written paragraph being read. Keep every piece specific to this business. Never use generic marketing language.
 
 Return only the JSON object. No markdown, no explanation.`;
 
