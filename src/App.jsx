@@ -140,29 +140,39 @@ const PLATFORMS = [
 ];
 
 const QUESTIONS = [
-  {id:"what",label:"QUESTION 1 OF 12",q:"What does your business do?",type:"text",
+  // ─────────────────────────────────────────────────────────────
+// LEDE App.jsx — SURGICAL PATCH
+// Replace the entire QUESTIONS constant with the version below.
+// Find: const QUESTIONS = [
+// Replace everything from that line to the closing ];
+// ─────────────────────────────────────────────────────────────
+
+const QUESTIONS = [
+  {id:"business_name",label:"QUESTION 1 OF 13",q:"What is your business called?",type:"text",
+    hint:"Example: Primtouch Photography, Stone Ridge School, Mama Shida Restaurant, Oscar Ntege Films."},
+  {id:"what",label:"QUESTION 2 OF 13",q:"What does your business do?",type:"text",
     hint:"Example: We help small restaurants in Kampala fill tables on weekdays using short videos posted on Facebook and WhatsApp."},
-  {id:"who",label:"QUESTION 2 OF 12",q:"Who is your ideal customer?",type:"text",
+  {id:"who",label:"QUESTION 3 OF 13",q:"Who is your ideal customer?",type:"text",
     hint:"Example: She is 34, runs a beauty salon in Ntinda, frustrated that her Instagram looks good but bookings have not changed."},
-  {id:"why",label:"QUESTION 3 OF 12",q:"Why did you start this business?",type:"text",
+  {id:"why",label:"QUESTION 4 OF 13",q:"Why did you start this business?",type:"text",
     hint:"Example: I watched my father run a great shop for 20 years. When he got sick, I realized all customers were loyal to him personally."},
-  {id:"result",label:"QUESTION 4 OF 12",q:"Best result you have gotten for a customer?",type:"text",
+  {id:"result",label:"QUESTION 5 OF 13",q:"Best result you have gotten for a customer?",type:"text",
     hint:"Example: A salon owner spent 200,000 on flyers with zero results. Within 6 weeks she had 40 new clients."},
-  {id:"different",label:"QUESTION 5 OF 12",q:"How are you different from competitors?",type:"text",
+  {id:"different",label:"QUESTION 6 OF 13",q:"How are you different from competitors?",type:"text",
     hint:"Example: Most photographers hand you a USB and disappear. We stay involved 60 days after the shoot."},
-  {id:"challenge",label:"QUESTION 6 OF 12",q:"Your biggest marketing challenge right now?",type:"choice",
+  {id:"challenge",label:"QUESTION 7 OF 13",q:"Your biggest marketing challenge right now?",type:"choice",
     options:["Not enough clients or leads","People say I am too expensive","I do not know what content to post","I get attention but no sales","I have no time to create content","People do not understand what I offer"]},
-  {id:"tried",label:"QUESTION 7 OF 12",q:"What marketing have you tried before?",type:"multi",
+  {id:"tried",label:"QUESTION 8 OF 13",q:"What marketing have you tried before?",type:"multi",
     options:["Boosted Facebook posts","Flyers and print advertising","WhatsApp status updates","Instagram posts","Word of mouth only","Google ads","TikTok videos","YouTube","Nothing yet"]},
-  {id:"price",label:"QUESTION 8 OF 12",q:"How much does your product or service cost?",type:"choice",
+  {id:"price",label:"QUESTION 9 OF 13",q:"How much does your product or service cost?",type:"choice",
     options:["Under $30 per sale","$30 – $150 per sale","$150 – $500 per sale","$500 – $2,000 per sale","Above $2,000 per sale","It varies — I price per project"]},
-  {id:"objection",label:"QUESTION 9 OF 12",q:"What do people say when they do not buy?",type:"choice",
+  {id:"objection",label:"QUESTION 10 OF 13",q:"What do people say when they do not buy?",type:"choice",
     options:["It is too expensive","Let me think about it","I will come back later","I found someone cheaper","I do not need it right now","They disappear without explaining"]},
-  {id:"proof",label:"QUESTION 10 OF 12",q:"What proof do you have that your business works?",type:"text",
+  {id:"proof",label:"QUESTION 11 OF 13",q:"What proof do you have that your business works?",type:"text",
     hint:"Example: 6 years in business, 200+ clients, one bride messaged me 2 years later saying the photos remind her why she chose her husband."},
-  {id:"platforms",label:"QUESTION 11 OF 12",q:"Where does your ideal customer spend time online?",type:"multi",
+  {id:"platforms",label:"QUESTION 12 OF 13",q:"Where does your ideal customer spend time online?",type:"multi",
     options:["Facebook","Instagram","WhatsApp","TikTok","YouTube","Twitter / X","LinkedIn","They are mostly offline"]},
-  {id:"goal",label:"QUESTION 12 OF 12",q:"What does success look like in 12 months?",type:"text",
+  {id:"goal",label:"QUESTION 13 OF 13",q:"What does success look like in 12 months?",type:"text",
     hint:"Example: Fully booked 3 months in advance. Prices up 40 percent. Content bringing enquiries while I sleep."},
 ];
 
